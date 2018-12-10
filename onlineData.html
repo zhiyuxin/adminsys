@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏管理系统</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/onlineData.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/onlineData.js"></script>
+</head>
+<body>
+<div class="content">
+    <div class="pageCont">
+        <div class="right fl">
+            <div class="rightTitle">
+                <p>
+                    <i></i>
+                    <span>系统主页</span>
+                    <i>></i>
+                    <span>在线数据</span>
+                </p>
+            </div>
+            <div class="rightDown">
+                <div class="public">
+                    <div class="chooseTime fl">
+                        <label for="">选择时间：</label>
+                    </div>
+                    <div class="type fl">
+                        <span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="time" id="today" checked="">
+                                <span class="radio"></span>
+                            </span>
+                            <label class="text" for="today">日报表</label>
+                        </span>
+                        <span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="time" id="week">
+                                <span class="radio"></span>
+                            </span>
+                            <label class="text" for="week">周报表</label>
+                        </span>
+                        <span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="time" id="month">
+                                <span class="radio"></span>
+                            </span>
+                            <label class="text" for="month">月报表</label>
+                        </span>
+                        <span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="time" id="custom">
+                                <span class="radio"></span>
+                            </span>
+                            <label class="text" for="custom">自由时间报表</label>
+                        </span>
+                        <div class="timer fl">
+                            <input type="date">&nbsp;&nbsp;到&nbsp;&nbsp;<input type="date">
+                        </div>
+                        <div class="search-button fl">
+                            <input class="button" type="button" value="搜索">
+                        </div>
+                    </div>
+                </div>
+                <div class="dailyList">
+                    <div class="list">
+                        <ul>
+                            <li><p>1</p><p>新增数据</p></li>
+                            <li><p>2</p><p>新增角色数</p></li>
+                            <li><p>3</p><p>新增设备数</p></li>
+                            <li><p>4</p><p>日活跃用户</p></li>
+                            <li><p>5</p><p>周活跃用户</p></li>
+                            <li><p>6</p><p>月活跃用户</p></li>
+                            <li><p>7</p><p>回流用户</p></li>
+                            <li><p>8</p><p>活跃账号时长</p></li>
+                            <li><p>9</p><p>流失用户</p></li>
+                            <li><p>10</p><p>用户留存率</p></li>
+                            <li><p>11</p><p>当日玩家在线数据</p></li>
+                        </ul>
+                    </div>
+                    <div class="onecharts" id="onecharts"></div>
+                </div>
+            </div>
+
+      </div>
+    </div>
+</div>
+</body>
+<div>l>

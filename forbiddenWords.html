@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏管理系统</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forbiddenWords.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/main.js"></script>
+
+</head>
+<body>
+<div class="content">
+    <div class="pageCont">
+        <div class="right fl">
+            <div class="rightTitle">
+                <p>
+                    <i></i>
+                    <span>系统主页</span>
+                    <i>></i>
+                    <span>禁言功能</span>
+                </p>
+            </div>
+            <div class="rightDown">
+                <div class="searchUser">
+                    <input type="text" placeholder="用户昵称或ID">
+                    <input type="button" class="search" value="查询">
+                </div>
+                <div class="table">
+                    <div class="table-row-group">
+                        <ul class="table-header-row">
+                            <li class="table-cell">用户昵称</li>
+                            <li class="table-cell">封禁状态</li>
+                            <li class="table-cell">封禁时间</li>
+                            <li class="table-cell">封禁原因</li>
+                            <li class="table-cell">操作人</li>
+                            <li class="table-cell">封禁周期</li>
+                            <li class="table-cell">操作</li>
+                        </ul>
+                    </div>
+                    <div class="table-row-group">
+                        <ul class="table-row">
+                            <li class="table-cell">admin</li>
+                            <li class="table-cell">已封禁</li>
+                            <li class="table-cell">2018/12/05</li>
+                            <li class="table-cell">
+                                <input type="text">
+                            </li>
+                            <li class="table-cell">admin</li>
+                            <li class="table-cell">
+                                <select name="" id="">
+                                    <option value="">禁言1天</option>
+                                    <option value="">禁言7天</option>
+                                    <option value="">禁言30天</option>
+                                </select>
+                            </li>
+                            <li class="table-cell operation">
+                                <a href="javascript:;" class="implement">执行</a>
+                                <a href="javascript:;" class="unsealing">解封</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--分页-->
+                <div class="pages">
+                    <div class="fenye">
+                        <a href="javascript:;" class="backpage">上一页</a>
+                        <a href="javascript:;"><b>1</b></a>
+                        <a href="javascript:;"><b>2</b></a>
+                        <a href="javascript:;"><b>3</b></a>
+                        <a href="javascript:;"><b>4</b></a>
+                        <a href="javascript:;"><b>5</b></a>
+                        <a href="javascript:;" class="shenlue">...</a>
+                        <a href="javascript:;"><b>100</b></a>
+                        <a href="javascript:;" class="nextpage">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

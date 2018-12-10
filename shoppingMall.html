@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏管理系统</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/shoppingMall.css">
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!--<script src="js/realTimeDataFishing.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/shoppingMall.js"></script>
+</head>
+<body>
+<div class="content">
+    <div class="pageCont">
+        <div class="right fl">
+            <div class="rightTitle">
+                <p>
+                    <i></i>
+                    <span>系统主页</span>
+                    <i>></i>
+                    <span>商城概况</span>
+                </p>
+            </div>
+            <div class="rightDown">
+                <ul class="rh_title">
+                    <li class="current">销售总况</li>
+                    <li>销售明细</li>
+                </ul>
+                <ul class="rh_cont">
+                    <!--销售总况-->
+                    <li class="show">
+                        <p>
+                            <label for="">出售道具总数:</label>
+                            <span>18987</span>
+                            <label for="">销售总额:</label>
+                            <span>8987</span>
+                            <label for="">购买人数:</label>
+                            <span>10087</span>
+                        </p>
+                        <div class="table">
+                            <div class="table-row-group">
+                                <ul class="table-header-row">
+                                    <li class="table-cell">用户昵称</li>
+                                    <li class="table-cell">用户ID</li>
+                                    <li class="table-cell">用户账号</li>
+                                    <li class="table-cell">服务器</li>
+                                    <li class="table-cell">销售日期</li>
+                                    <li class="table-cell">发货日期</li>
+                                    <li class="table-cell">产品类别</li>
+                                    <li class="table-cell">产品名称</li>
+                                    <li class="table-cell">产品数量</li>
+                                    <li class="table-cell">产品销售单价</li>
+                                    <li class="table-cell">产品成本价</li>
+                                    <li class="table-cell">单笔购买人数</li>
+                                    <li class="table-cell">单笔销售总额</li>
+                                    <li class="table-cell">单笔成本总额</li>
+                                    <li class="table-cell">单笔利润总额</li>
+                                </ul>
+                            </div>
+                            <div class="table-row-group">
+                                <ul class="table-row">
+                                    <li class="table-cell">admin</li>
+                                    <li class="table-cell">10086</li>
+                                    <li class="table-cell">18888888888</li>
+                                    <li class="table-cell">1</li>
+                                    <li class="table-cell">2018-12-04</li>
+                                    <li class="table-cell">2018-12-05</li>
+                                    <li class="table-cell">游戏道具</li>
+                                    <li class="table-cell">元宝</li>
+                                    <li class="table-cell">20</li>
+                                    <li class="table-cell">2000</li>
+                                    <li class="table-cell">0</li>
+                                    <li class="table-cell">1</li>
+                                    <li class="table-cell">100</li>
+                                    <li class="table-cell">0</li>
+                                    <li class="table-cell">100</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!--销售明细-->
+                    <li>
+                        <div class="table">
+                            <div class="table-row-group">
+                                <ul class="table-header-row">
+                                    <li class="table-cell detailed">大区编号ID</li>
+                                    <li class="table-cell detailed">服务器ID</li>
+                                    <li class="table-cell detailed">出售日期</li>
+                                    <li class="table-cell detailed">道具大类</li>
+                                    <li class="table-cell detailed">道具名称</li>
+                                    <li class="table-cell detailed">产品购买人数</li>
+                                    <li class="table-cell detailed">产品购买数</li>
+                                    <li class="table-cell detailed">产品销售数</li>
+                                    <li class="table-cell detailed">产品库存数</li>
+                                    <li class="table-cell detailed">产销售总额</li>
+                                    <li class="table-cell detailed">产品成本总额</li>
+                                    <li class="table-cell detailed">产品利润</li>
+                                </ul>
+                            </div>
+                            <div class="table-row-group">
+                                <ul class="table-row">
+                                    <li class="table-cell">1</li>
+                                    <li class="table-cell">2</li>
+                                    <li class="table-cell">2018-12-04</li>
+                                    <li class="table-cell">游戏道具</li>
+                                    <li class="table-cell">元宝</li>
+                                    <li class="table-cell">20</li>
+                                    <li class="table-cell">2000</li>
+                                    <li class="table-cell">0</li>
+                                    <li class="table-cell">1</li>
+                                    <li class="table-cell">100</li>
+                                    <li class="table-cell">0</li>
+                                    <li class="table-cell">100</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!--分页-->
+                <div class="pages">
+                    <div class="fenye">
+                        <a href="javascript:;" class="backpage">上一页</a>
+                        <a href="javascript:;"><b>1</b></a>
+                        <a href="javascript:;"><b>2</b></a>
+                        <a href="javascript:;"><b>3</b></a>
+                        <a href="javascript:;"><b>4</b></a>
+                        <a href="javascript:;"><b>5</b></a>
+                        <a href="javascript:;" class="shenlue">...</a>
+                        <a href="javascript:;"><b>100</b></a>
+                        <a href="javascript:;" class="nextpage">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
