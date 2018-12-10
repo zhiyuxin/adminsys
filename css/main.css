@@ -207,9 +207,9 @@
 .userQueryUl{
     display: block;
 }
-.nav>.current>span{
-    transform: rotate(180deg);
-}
+/*.nav>.current>span{*/
+    /*transform: rotate(180deg);*/
+/*}*/
 .navActive{
     color: #f60!important;
 }

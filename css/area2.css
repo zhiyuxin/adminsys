@@ -1,42 +1,19 @@
-.machineRecharge>.sub{
+.machineAccount>.sub{
     display: block;
 }
-.machineRecharge>.sub>li>.oneLi{
+.machineAccount>.sub>li>.oneLi{
     color: #f60;
-}
-.content>.pageCont>.right>.rightDown>.rh_title {
-    width: 100%;
-    height: 30px;
-    margin-bottom: 20px;
-}
-
-.content>.pageCont>.right>.rightDown>.rh_title>li {
-    width: 11%;
-    height: 30px;
-    background: #ccc;
-    text-align: center;
-    line-height: 30px;
-    float: left;
-    cursor: pointer;
-    font-size: 15px;
-    /*border-bottom: 1px solid #ccc;*/
-    /* border-radius: 5px; */
-}
-
-.content>.pageCont>.right>.rightDown>.rh_title>.current {
-    background: #000033;
-    color: #fff;
 }
 .content>.pageCont>.right>.rightDown>.public {
     /*float: inherit;*/
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.chooseTime {
+.content>.pageCont>.right>.rightDown>.public>.chooseTime {
     margin-bottom: 10px;
     font-size: 15px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.chooseTime>label {
+.content>.pageCont>.right>.rightDown>.public>.chooseTime>label {
     position: relative;
     padding-left: 7px;
     /*width: 6em;*/
@@ -44,12 +21,12 @@
     line-height: 26px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type {
+.content>.pageCont>.right>.rightDown>.public>.type {
     margin-bottom: 10px;
     font-size: 15px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose {
     position: relative;
     top: 6px;
     float: left;
@@ -57,7 +34,7 @@
     white-space: nowrap;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose>.checkboxouter {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose>.checkboxouter {
     float: left;
     position: relative;
     margin: 0 auto;
@@ -66,14 +43,14 @@
     background: url("../img/radio.png");
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose input[type=radio], .kv-item .choose input[type=checkbox] {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose input[type=radio], .kv-item .choose input[type=checkbox] {
     position: relative;
     *position: static;
     float: left;
     margin-right: -16px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose .checkboxouter input[type="radio"] {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose .checkboxouter input[type="radio"] {
     opacity: 0;
     filter: alpha(opacity=0);
     background: red;
@@ -86,7 +63,7 @@
     top: 0;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose .checkboxouter .radio {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose .checkboxouter .radio {
     position: absolute;
     left: 0;
     top: 0;
@@ -95,11 +72,11 @@
     background: none;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose .checkboxouter input[type="radio"]:checked ~.radio {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose .checkboxouter input[type="radio"]:checked ~.radio {
     background: url("../img/radiochecked.png");
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.choose .text {
+.content>.pageCont>.right>.rightDown>.public>.type>.choose .text {
     float: left;
     padding-left: 5px;
     *padding-left: 5px;
@@ -107,12 +84,12 @@
     font-size: 14px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.timer {
+.content>.pageCont>.right>.rightDown>.public>.type>.timer {
     margin-top: 2px;
     font-size: 15px;
 }
 
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.public>.type>.search-button>input {
+.content>.pageCont>.right>.rightDown>.public>.type>.search-button>input {
     display: inline-block;
     width: 135px;
     height: 30px;
@@ -141,7 +118,7 @@
 }
 
 /**/
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.list>li{
+.content>.pageCont>.right>.rightDown>.list>li{
     display: inline-block;
     width: 185px;
     height: 110px;
@@ -149,17 +126,17 @@
     margin: 0 5px 5px 0;
     font-size: 14px;
 }
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.list>li>a{
+.content>.pageCont>.right>.rightDown>.list>li>a{
     display: block;
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.list>li>a>p{
+.content>.pageCont>.right>.rightDown>.list>li>a>p{
     padding-left: 15px;
     line-height: 27px;
 }
-.content>.pageCont>.right>.rightDown>.rh_cont>li>.list>li>a>p:last-child{
+.content>.pageCont>.right>.rightDown>.list>li>a>p:last-child{
     background: #ccc;
     text-align: center;
     padding-left: 0;

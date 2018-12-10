@@ -32,7 +32,7 @@ $(function () {
         "                    <i></i>\n" +
         "                    用户查询<span></span>\n" +
         "                    <ul class=\"sub\">\n" +
-        "                        <li><a href='userQuery.html'>用户详情</a></li>\n" +
+        "                        <li><a href='userQuery.html' class='test'>用户详情</a></li>\n" +
         "                    </ul>\n" +
         "                </li>\n" +
         "                <li class='machineAccount'>\n" +
