@@ -29,7 +29,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="151" />
+          <entry key="css" value="153" />
           <entry key="html" value="100" />
           <entry key="js" value="59" />
           <entry key="rnc" value="3" />
@@ -37,7 +37,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="151" />
+          <entry key="CSS" value="153" />
           <entry key="HTML" value="100" />
           <entry key="JavaScript" value="59" />
           <entry key="RNG Compact" value="3" />
@@ -45,14 +45,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="5139" />
+          <entry key="css" value="5140" />
           <entry key="html" value="5602" />
           <entry key="js" value="2943" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="5139" />
+          <entry key="CSS" value="5140" />
           <entry key="HTML" value="5620" />
           <entry key="JavaScript" value="2925" />
         </counts>
@@ -63,6 +63,15 @@
     <splitter split-orientation="horizontal" split-proportion="0.48486683">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/css/machineRecharge.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret selection-end-line="5" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/css/gameNotice.css">
               <provider selected="true" editor-type-id="text-editor">
@@ -81,11 +90,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/css/clearBomb.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="66">
                   <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/css/area.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="66">
+                  <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -185,7 +203,6 @@
         <option value="$PROJECT_DIR$/js/statisticsDataFraction.js" />
         <option value="$PROJECT_DIR$/js/statisticsDataHappy.js" />
         <option value="$PROJECT_DIR$/js/statisticsDataInsane.js" />
-        <option value="$PROJECT_DIR$/css/area.css" />
         <option value="$PROJECT_DIR$/statisticsDataFishing.html" />
         <option value="$PROJECT_DIR$/statisticsDataHappy.html" />
         <option value="$PROJECT_DIR$/statisticsDataFraction.html" />
@@ -225,6 +242,7 @@
         <option value="$PROJECT_DIR$/css/roseData.css" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/css/clearBomb.css" />
+        <option value="$PROJECT_DIR$/css/area.css" />
       </list>
     </option>
   </component>
@@ -234,7 +252,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -322,12 +340,12 @@
       <workItem from="1544172958117" duration="5280000" />
       <workItem from="1544230761377" duration="670000" />
       <workItem from="1544356984597" duration="7043000" />
-      <workItem from="1544403267140" duration="2251000" />
+      <workItem from="1544403267140" duration="2904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140209000" />
+    <option name="totallyTimeSpent" value="140862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -377,13 +395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/area.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="142" column="24" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -651,13 +662,6 @@
     <entry file="file://$PROJECT_DIR$/machineRecharge.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/machineRecharge.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/PayEnquiry.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -697,6 +701,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/machineRecharge.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/area.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="1" />
         </state>
       </provider>
     </entry>
