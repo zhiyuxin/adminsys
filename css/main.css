@@ -60,7 +60,11 @@
     font-size: 15px;
     cursor: pointer;
 }
-.content>.title>.dropDown>ul>li:hover{
+.content>.title>.dropDown>ul>li>a{
+    text-decoration: none;
+    color: #000;
+}
+.content>.title>.dropDown>ul>li>a:hover{
     color: #f60;
 }
 /*内容页面*/

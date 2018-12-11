@@ -34,8 +34,8 @@ $(function () {
         "        </div>\n" +
         "        <div class=\"dropDown fr\">\n" +
         "            <ul>\n" +
-        "                <li>重新登陆</li>\n" +
-        "                <li>修改密码</li>\n" +
+        "                <li><a href='login.html'>重新登陆</a></li>\n" +
+        "                <li><a href='##'>修改密码</a></li>\n" +
         "                <li><a href='login.html'>退出</a></li>\n" +
         "            </ul>\n" +
         "        </div>\n" +
