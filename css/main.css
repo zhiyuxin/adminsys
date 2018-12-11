@@ -14,8 +14,54 @@
 .content>.title{
     width: 100%;
     height: 50px;
-    background: #ccc;
+    /*background: #ccc;*/
     margin-bottom: 10px;
+}
+.content>.title>.rightUser{
+    height: 50px;
+    line-height: 50px;
+    padding-right: 40px;
+    position: relative;
+    cursor: pointer;
+}
+.content>.title>.rightUser>img{
+    width: 34px;
+    height: 34px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+.content>.title>.rightUser>span{
+    line-height: 50px;
+}
+.content>.title>.rightUser>i{
+    position: absolute;
+    right: 15px;
+    top: 19px;
+    width: 16px;
+    height: 15px;
+    background: url("../img/h.png")no-repeat;
+}
+.content>.title>.dropDown{
+    display: none;
+    width: 120px;
+    height: auto;
+    background: #ccc;
+    position: fixed;
+    top: 60px;
+    right: 5px;
+}
+.content>.title>.dropDown>ul{
+    width: 100%;
+    height: 100%;
+}
+.content>.title>.dropDown>ul>li{
+    text-align: center;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.content>.title>.dropDown>ul>li:hover{
+    color: #f60;
 }
 /*内容页面*/
 .content>.pageCont{

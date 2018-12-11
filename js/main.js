@@ -15,11 +15,31 @@ $(function () {
         $(this).siblings().removeClass("current");
     });
 
+
+    //用户操作
+    $("body").delegate(".title>.rightUser", "click", function () {
+        $(".dropDown").fadeToggle(500);
+    })
+
+
     /*
     创建公共页面节点
      */
     //title
-    var $title = $("<div class=\"title\"></div>");
+    var $title = $("<div class=\"title\">\n" +
+        "        <div class=\"rightUser fr\">\n" +
+        "            <img src=\"img/userfacebg.png\" alt=\"\">\n" +
+        "            <span>admin</span>\n" +
+        "            <i></i>\n" +
+        "        </div>\n" +
+        "        <div class=\"dropDown fr\">\n" +
+        "            <ul>\n" +
+        "                <li>重新登陆</li>\n" +
+        "                <li>修改密码</li>\n" +
+        "                <li><a href='login.html'>退出</a></li>\n" +
+        "            </ul>\n" +
+        "        </div>\n" +
+        "    </div>");
     $(".content").prepend($title);
     //left
     var $left = $("<div class=\"left fl\">\n" +
