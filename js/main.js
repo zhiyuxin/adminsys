@@ -41,8 +41,8 @@ $(function () {
         "                    <ul class=\"sub\">\n" +
         //"                        <li><a href='realTimeDataFishing.html'>线号数据</a></li>\n" +
         "                        <li><a href='machineAccount.html' class='oneLi'>大区机台账务查询</a></li>\n" +
-        "                        <li><a href='realTimeDataFishing.html' class='twoLi'>游戏实时数据</a></li>\n" +
-        "                        <li><a href='statisticsDataFishing.html' class='threeLi'>游戏数据统计</a></li>\n" +
+        "                        <li><a href='realTimeDataOverview.html' class='twoLi'>游戏实时数据</a></li>\n" +
+        "                        <li><a href='statisticsDataOverview.html' class='threeLi'>游戏数据统计</a></li>\n" +
         "                    </ul>\n" +
         "                </li>\n" +
         "                <li class='rankingList'>\n" +
@@ -71,8 +71,8 @@ $(function () {
         "                    <i></i>\n" +
         "                    充值支付<span></span>\n" +
         "                    <ul class=\"sub\">\n" +
-        "                        <li><a href='machineRecharge.html' class='oneLi'>大区机台充值查询</a></li>\n" +
-        "                        <li><a href='PayEnquiry.html' class='twoLi'>支付查询</a></li>\n" +
+        "                        <li><a href='machineRecharge.html' class='oneLi'>大区充值查询</a></li>\n" +
+        "                        <li><a href='payEnquiry.html' class='twoLi'>支付查询</a></li>\n" +
         //"                        <li><a href='cardAdd.html'>充值卡详情</a></li>\n" +
         "                    </ul>\n" +
         "                </li>\n" +

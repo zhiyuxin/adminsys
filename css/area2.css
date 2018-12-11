@@ -1,7 +1,7 @@
-.machineAccount>.sub{
+.machineRecharge>.sub{
     display: block;
 }
-.machineAccount>.sub>li>.oneLi{
+.machineRecharge>.sub>li>.oneLi{
     color: #f60;
 }
 .content>.pageCont>.right>.rightDown>.public {

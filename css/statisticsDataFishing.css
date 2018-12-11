@@ -13,7 +13,7 @@
 }
 .content>.pageCont>.right>.rightDown>.riTitle>li{
     display: inline-block;
-    width: 19%;
+    width: 16%;
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -68,10 +68,10 @@
     height: auto;
 }
 .content>.pageCont>.right>.rightDown>.listDown>.leftList>.listLeft>ul>li{
-    width: 75%;
+    width: 50%;
     line-height: 30px;
     font-size: 15px;
-    padding-left: 20px;
+    padding-left: 15px;
     cursor: pointer;
 }
 .content>.pageCont>.right>.rightDown>.listDown>.leftList>.listLeft>ul>.current{
@@ -306,5 +306,8 @@
     }
     .content>.pageCont>.right>.rightDown>.listDown>.rh_title {
         margin-left: 122px;
+    }
+    .content>.pageCont>.right>.rightDown>.listDown>.leftList>.listLeft>ul>li{
+        width: 70%;
     }
 }
