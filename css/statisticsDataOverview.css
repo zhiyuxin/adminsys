@@ -46,13 +46,10 @@
 }
 .table-cell {
     display: table-cell;
-     padding: 0;
+    padding: 5px 0 5px 0;
     border: 1px solid #ccc;
     text-align: center;
     font-size: 14px;
-    width: 279px;
-    height: 28px;
-    line-height: 28px;
 }
 /*适配*/
 @media screen and (min-width: 1200px) and (max-width: 1680px) {
