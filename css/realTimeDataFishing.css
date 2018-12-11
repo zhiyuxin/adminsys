@@ -41,7 +41,7 @@
     height: auto;
 }
 .content>.pageCont>.right>.rightDown>.listDown>.listLeft>ul>li{
-    width: 75%;
+    width: 50%;
     line-height: 30px;
     font-size: 15px;
     padding-left: 20px;
@@ -139,5 +139,8 @@
 @media screen and (min-width: 1200px) and (max-width: 1680px) {
     .table-cell {
         padding: 5px 0 5px 0;
+    }
+    .content>.pageCont>.right>.rightDown>.listDown>.listLeft>ul>li {
+        width: 70%;
     }
 }

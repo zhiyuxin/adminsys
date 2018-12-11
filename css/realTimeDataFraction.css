@@ -41,7 +41,7 @@
     height: auto;
 }
 .content>.pageCont>.right>.rightDown>.listDown>.listLeft>ul>li{
-    width: 75%;
+    width: 67%;
     line-height: 30px;
     font-size: 15px;
     padding-left: 20px;
@@ -148,4 +148,9 @@
     border: 1px solid #ccc;
     text-align: center;
     font-size: 14px;
+}
+@media screen and (max-width: 1680px) and (min-width: 1200px){
+    .content>.pageCont>.right>.rightDown>.listDown>.listLeft>ul>li {
+        width: 93%;
+    }
 }
