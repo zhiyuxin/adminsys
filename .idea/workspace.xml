@@ -31,7 +31,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="175" />
-          <entry key="html" value="133" />
+          <entry key="html" value="134" />
           <entry key="js" value="74" />
           <entry key="rnc" value="3" />
         </counts>
@@ -39,7 +39,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="175" />
-          <entry key="HTML" value="133" />
+          <entry key="HTML" value="134" />
           <entry key="JavaScript" value="74" />
           <entry key="RNG Compact" value="3" />
         </counts>
@@ -74,8 +74,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/realTimeDataOverview.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+            <state relative-caret-position="640">
+              <caret line="100" column="18" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/statisticsDataOverview.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="664">
+              <caret line="101" column="18" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="101" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -207,8 +216,8 @@
         <option value="$PROJECT_DIR$/realTimeDataHappy.html" />
         <option value="$PROJECT_DIR$/realTimeDataInsane.html" />
         <option value="$PROJECT_DIR$/css/realTimeDataOverview.css" />
-        <option value="$PROJECT_DIR$/realTimeDataOverview.html" />
         <option value="$PROJECT_DIR$/incomeDaily.html" />
+        <option value="$PROJECT_DIR$/realTimeDataOverview.html" />
       </list>
     </option>
   </component>
@@ -304,12 +313,12 @@
       <workItem from="1544403267140" duration="7300000" />
       <workItem from="1544437295617" duration="11000" />
       <workItem from="1544490166335" duration="4109000" />
-      <workItem from="1544494667104" duration="1715000" />
+      <workItem from="1544494667104" duration="2001000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151093000" />
+    <option name="totallyTimeSpent" value="151379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -448,13 +457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
           <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/statisticsDataOverview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="99" column="26" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -663,10 +665,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/statisticsDataOverview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="101" column="18" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="101" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/realTimeDataOverview.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        <state relative-caret-position="640">
+          <caret line="100" column="18" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
         </state>
       </provider>
     </entry>
