@@ -9,7 +9,6 @@
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/echarts.common.min.js"></script>
-    <script src="js/vipecharts.js"></script>
 
 </head>
 <body>
@@ -25,42 +24,36 @@
                 </p>
             </div>
             <div class="rightDown">
-               <div class="rdtop">
-                   <div class="searchUser">
-                       <input type="text" placeholder="用户昵称或ID">
-                       <input type="button" class="search" value="查询">
-                   </div>
-                   <div class="table">
-                       <div class="table-row-group">
-                           <ul class="table-header-row">
-                               <li class="table-cell">用户昵称</li>
-                               <li class="table-cell">VIP等级</li>
-                               <li class="table-cell">账号等级</li>
-                           </ul>
-                       </div>
-                       <div class="table-row-group">
-                           <ul class="table-row">
-                               <li class="table-cell">admin</li>
-                               <li class="table-cell">1</li>
-                               <li class="table-cell">2</li>
-                           </ul>
-                       </div>
-                   </div>
-                   <!--分页-->
-                   <div class="pages">
-                       <div class="fenye">
-                           <a href="javascript:;" class="backpage">上一页</a>
-                           <a href="javascript:;"><b>1</b></a>
-                           <a href="javascript:;"><b>2</b></a>
-                           <a href="javascript:;"><b>3</b></a>
-                           <a href="javascript:;"><b>4</b></a>
-                           <a href="javascript:;"><b>5</b></a>
-                           <a href="javascript:;" class="shenlue">...</a>
-                           <a href="javascript:;"><b>100</b></a>
-                           <a href="javascript:;" class="nextpage">下一页</a>
-                       </div>
-                   </div>
-               </div>
+                <div class="rdtop">
+                    <div class="searchUser">
+                        <input type="text" id="sid" placeholder="请输入昵称或ID" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                        <input type="button" class="search" id="search" value="查询">
+                    </div>
+                    <div class="table">
+                        <div class="table-row-group">
+                            <ul class="table-header-row">
+                                <li class="table-cell">用户昵称</li>
+                                <li class="table-cell">VIP等级</li>
+                                <li class="table-cell">账号等级</li>
+                            </ul>
+                        </div>
+                        <div class="table-row-group" id="table-body">
+                            <ul class="table-row">
+                                <li class="table-cell" id="name"></li>
+                                <li class="table-cell" id="VGrade"></li>
+                                <li class="table-cell" id="AGrade"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--分页-->
+                    <div class="pages">
+                        <div class="fenye">
+                            <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                            <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                            <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
+                        </div>
+                    </div>
+                </div>
                 <div class="echarts">
                     <div class="vipecharts1" id="vipecharts1"></div>
                     <div class="vipecharts2" id="vipecharts2"></div>
@@ -69,5 +62,93 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+<script src="js/vipecharts.js"></script>
+<script>
+    //VIP用户查询
+    $("#search").click(function () {
+        var SID = document.getElementById("sid").value;
+        // console.log(SID);
+        if(SID == ""){
+            alert("昵称或ID不能为空")
+            return
+        }
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("8591" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                UID: parseInt(0),
+                NAME:SID
+            }));
+        }
+
+        socket.onmessage = function (msg) {
+            var newdate = "";
+            for (var i = 0; i < msg.data.length; i++) {
+                if (i > 3) {
+                    newdate = newdate + msg.data[i];
+                }
+            }
+
+            var obj = toJson(newdate)
+
+            SetCookie("HPlength", obj.Viplist.length);
+            //定义一个空的变量，将需要展示的数据放到里面
+            var num = "";
+            for (var i = 0; i < obj.Viplist.length; i++) {
+                num += "<ul class=\"table-row\">";
+                num += "<li class=\"table-cell\"  id=\"name\">" + SID + "</li>";
+                num += "<li class=\"table-cell\"  id=\"VGrade\">" + obj.Viplist[i].VLvM + "</li>";
+                num += "<li class=\"table-cell\"  id=\"AGrade\">" + obj.Viplist[i].ZLv + "</li>";
+                num += "</ul>";
+            }
+            $("#table-body").html(num);
+            socket.close();
+        }
+    })
+
+
+    $(function () {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9047" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG")
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate)
+                // alert(obj)
+                if (obj.Viplist == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+
+                SetCookie("HPlength", obj.Viplist.length);
+                //定义一个空的变量，将需要展示的数据放到里面
+                var num = "";
+                for (var i = 0; i < obj.Viplist.length; i++) {
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\"  id=\"name\">" + obj.Viplist[i].NickName + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"VGrade\">" + obj.Viplist[i].VLvM + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"AGrade\">" + obj.Viplist[i].ZLv + "</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num);
+                socket.close();
+
+            }
+        }
+    })
+</script>
 </body>
 </html>

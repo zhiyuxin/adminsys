@@ -90,11 +90,11 @@
     padding: 5px 0 5px 0;
     position: relative;
 }
-.tableList .table a{
-    display: block;
+.tableList .table input[type=button]{
+    /*display: block;*/
     width: 70px;
-    height: 10px;
-    line-height: 10px;
+    height: 25px;
+    line-height: 13px;
     border: 1px solid #ccc;
     background: #fff;
     padding: 6px;
@@ -102,9 +102,19 @@
     -moz-border-radius: 7px;
     border-radius: 7px;
     color: #000;
-    position: absolute;
-    top: 3px;
-    left: 98px;
+    /*position: absolute;*/
+    /*top: 22px;*/
+    /*right: 90px;*/
+    cursor: pointer;
+}
+.tableList .table input[type=button]:hover{
+    background: red;
+    color: #fff;
+    border: 1px solid red;
+}
+#mytable th{
+    padding: 5px 5px 5px 5px;
+    border: 1px solid #000033;
 }
 @media screen and (min-width: 1200px) and (max-width: 1680px){
     .rightDown>.mailList {

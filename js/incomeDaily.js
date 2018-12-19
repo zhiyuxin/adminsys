@@ -1,3 +1,10 @@
+$(function () {
+    $(".incomeDaily>.sub>li>a").click(function () {
+        $(".all").removeClass("all");
+        $(".other").removeClass("other");
+        $(this).addClass("other");
+    });
+})
 window.onload = function () {
     //收入日报折线图
     // 基于准备好的dom，初始化echarts实例
@@ -45,3 +52,5 @@ window.onload = function () {
 
 
 }
+
+

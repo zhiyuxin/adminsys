@@ -67,16 +67,16 @@ $(function () {
         "                </li>\n" +
         "                <li class='rankingList'>\n" +
         "                    <i></i>\n" +
-        "                    排行榜<span></span>\n" +
+        "                    <a href='rankingList.html' style='display: inline-block;width: 68%;'>排行榜</a><span></span>\n" +
         "                    <ul class=\"sub\">\n" +
         "                        <li><a href='rankingList.html' class='all'>总排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='oneLi'>元宝排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='twoLi'>金币排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='threeLi'>玫瑰花排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='fourLi'>核弹排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='fiveLi'>充值金额排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='sixLi'>赢取排行榜</a></li>\n" +
-        "                        <li><a href='javascript:;' class='sevenLi'>在线时长排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(2)' class='oneLi'>元宝排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(1)' class='twoLi'>金币排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(3)' class='threeLi'>玫瑰花排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(4)' class='fourLi'>核弹排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(5)' class='fiveLi'>充值金额排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(6)' class='sixLi'>赢取排行榜</a></li>\n" +
+        "                        <li><a href='javascript:;' onclick='Select_User_infrom_Ranking(7)' class='sevenLi'>在线时长排行榜</a></li>\n" +
         "                    </ul>\n" +
         "                </li>\n" +
         "                <li class='prohibition'>\n" +
@@ -117,9 +117,14 @@ $(function () {
         "                    <i></i>\n" +
         "                    <a href='shoppingMall.html'>商城概况</a>\n" +
         "                </li>\n" +
-        "                <li>\n" +
+        "                <li class='incomeDaily'>\n" +
         "                    <i></i>\n" +
-        "                    <a href='incomeDaily.html'>收入日报</a>\n" +
+        "                    <a href='incomeDaily.html' style='display: inline-block;width: 68%;'>收入日报</a>\n" +
+        "                    <span></span>"+
+        "                    <ul class=\"sub\">\n" +
+        "                        <li><a href='channelRevenue.html' class='oneLi'>渠道收入</a></li>\n" +
+        "                        <li><a href='districtIncome.html' class='twoLi'>区服收入</a></li>\n" +
+        "                    </ul>\n" +
         "                </li>\n" +
         "                <li>\n" +
         "                    <i></i>\n" +
@@ -135,7 +140,6 @@ $(function () {
         "                    <ul class=\"sub\">\n" +
         "                        <li><a href='roseData.html' class='oneLi'>玫瑰花数据汇总</a></li>\n" +
         "                        <li><a href='clearBomb.html' class='twoLi'>核弹数据汇总</a></li>\n" +
-        //"                        <li><a href='cardAdd.html'>充值卡详情</a></li>\n" +
         "                    </ul>\n" +
         "                </li>\n" +
         "                <li>\n" +
@@ -145,14 +149,6 @@ $(function () {
         "            </ul>\n" +
         "        </div>");
     $(".pageCont").prepend($left);
-
-
-
-    //阻止二级菜单收缩
-    
-
-
-
 
     
     //弹层(元宝)
@@ -181,10 +177,10 @@ $(function () {
 
     //封禁、解封弹框提示
     $(".implement").click(function () {
-        alert("账号封禁成功");
+        // alert("账号封禁成功");
     });
     $(".unsealing").click(function () {
-        alert("账号解封成功");
+        // alert("账号解封成功");
     });
 
     //选项卡切换
@@ -243,4 +239,81 @@ $(function () {
 //         }
 //     }
 // }
+
+
+
+
+//后台请求玩家排行榜
+function Select_User_infrom_Ranking(num) {
+    // alert(123)
+    socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+    socket.onopen = function() {
+        socket.send("1000"+GetCookies("UG"));
+        socket.send("9077" + JSON.stringify({
+            BG:"",
+            UG:GetCookies("UG"),
+            ST:parseInt(num),
+            SID:parseInt(0),
+            SN:parseInt(5),
+            NUM:parseInt(16),
+        }));
+        socket.onmessage = function (msg) {
+            var newdate="";
+            for(var i=0;i<msg.data.length;i++){
+                if (i>3){
+                    newdate = newdate + msg.data[i];
+                }
+            }
+
+            // $("#user").html("用户昵称");
+            // $("#uid").html("用户Id");
+            // $("#uuid").html("用户uid");
+            // $("#lv").html(" 等级");
+            // $("#vlv").html("Vip等级");
+            // $("#yuanbao").html("元宝数量");
+            // $("#moneyge").html("赠送数量（金币 ）");
+            // $("#money").html("金币数量");
+            // $("#atnr").html("账号");
+            // $("#etml").html("设备");
+
+            obj = toJson(newdate)
+            if (obj.UMG == null) {
+                alert("未查询到任何数据")
+                return
+            }
+            // alert(newdate)
+            // $("table:eq(0) tr:gt(0)").remove();
+
+            SetCookie("HPlength", obj.UMG.length)
+
+            var num = ""
+            for (var i = 0; i < obj.UMG.length; i++) {
+                // var tr = $("<tr>");
+                num += "<ul  class='table-row'>"
+                num += "<li class='table-cell'>"+obj.UMG[i].NickName+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].ZH+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].Id+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].Uid+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].Lv+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].Vip+"</li>"
+                num += "<li class='table-cell yuanBao' onclick='yuanbao()' >"+obj.UMG[i].GoldN+"</li>"
+                num += "<li class='table-cell goldCoin'  onclick='jinbi()'>"+obj.UMG[i].Coin+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].MG+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].HD+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].Rmb+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].YXN+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].ZXTM+"</li>"
+                num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
+                num += "</ul>"
+            }
+
+
+
+            $("#table-body").html(num)
+            socket.close()
+        }
+    }
+}
+
+
 

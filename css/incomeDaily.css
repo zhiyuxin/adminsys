@@ -1,3 +1,12 @@
+.incomeDaily>.sub{
+    display: block;
+}
+.incomeDaily>.sub>li>.all{
+    color: #f60;
+}
+.incomeDaily>.sub>li>.other{
+    color: #f60;
+}
 /**/
 .public {
     width: 100%;

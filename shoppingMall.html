@@ -25,19 +25,19 @@
             </div>
             <div class="rightDown">
                 <ul class="rh_title">
-                    <li class="current">销售总况</li>
-                    <li>销售明细</li>
+                    <li class="current">销售明细</li>
+                    <li onclick="detailed()">销售总况</li>
                 </ul>
                 <ul class="rh_cont">
                     <!--销售总况-->
                     <li class="show">
                         <p>
                             <label for="">出售道具总数:</label>
-                            <span>18987</span>
+                            <span id="sell"></span>
                             <label for="">销售总额:</label>
-                            <span>8987</span>
+                            <span id="sale"></span>
                             <label for="">购买人数:</label>
-                            <span>10087</span>
+                            <span id="purchase"></span>
                         </p>
                         <div class="table">
                             <div class="table-row-group">
@@ -59,23 +59,23 @@
                                     <li class="table-cell">单笔利润总额</li>
                                 </ul>
                             </div>
-                            <div class="table-row-group">
+                            <div class="table-row-group" id="table-body">
                                 <ul class="table-row">
-                                    <li class="table-cell">admin</li>
-                                    <li class="table-cell">10086</li>
-                                    <li class="table-cell">18888888888</li>
-                                    <li class="table-cell">1</li>
-                                    <li class="table-cell">2018-12-04</li>
-                                    <li class="table-cell">2018-12-05</li>
-                                    <li class="table-cell">游戏道具</li>
-                                    <li class="table-cell">元宝</li>
-                                    <li class="table-cell">20</li>
-                                    <li class="table-cell">2000</li>
-                                    <li class="table-cell">0</li>
-                                    <li class="table-cell">1</li>
-                                    <li class="table-cell">100</li>
-                                    <li class="table-cell">0</li>
-                                    <li class="table-cell">100</li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
                                 </ul>
                             </div>
                         </div>
@@ -99,20 +99,20 @@
                                     <li class="table-cell detailed">产品利润</li>
                                 </ul>
                             </div>
-                            <div class="table-row-group">
+                            <div class="table-row-group" id="table-body-detailed">
                                 <ul class="table-row">
-                                    <li class="table-cell">1</li>
-                                    <li class="table-cell">2</li>
-                                    <li class="table-cell">2018-12-04</li>
-                                    <li class="table-cell">游戏道具</li>
-                                    <li class="table-cell">元宝</li>
-                                    <li class="table-cell">20</li>
-                                    <li class="table-cell">2000</li>
-                                    <li class="table-cell">0</li>
-                                    <li class="table-cell">1</li>
-                                    <li class="table-cell">100</li>
-                                    <li class="table-cell">0</li>
-                                    <li class="table-cell">100</li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
                                 </ul>
                             </div>
                         </div>
@@ -121,20 +121,119 @@
                 <!--分页-->
                 <div class="pages">
                     <div class="fenye">
-                        <a href="javascript:;" class="backpage">上一页</a>
-                        <a href="javascript:;"><b>1</b></a>
-                        <a href="javascript:;"><b>2</b></a>
-                        <a href="javascript:;"><b>3</b></a>
-                        <a href="javascript:;"><b>4</b></a>
-                        <a href="javascript:;"><b>5</b></a>
-                        <a href="javascript:;" class="shenlue">...</a>
-                        <a href="javascript:;"><b>100</b></a>
-                        <a href="javascript:;" class="nextpage">下一页</a>
+                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+<script>
+    $(function () {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9085" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG")
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                 // alert( msg.data)
+                if (obj.NUM == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+                SetCookie("SHlength", obj.NUM.length);
+                //出售道具总数:  销售总额:  购买人数:
+                var total = "";
+                $("#sell").html(obj.CSDJ);
+                $("#sale").html(obj.XSDJ);
+                $("#purchase").html(obj.GMRS);
+
+                var num = "";
+                for (var i = 0; i < obj.NUM.length; i++) {
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].NC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].GM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].XTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].FTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPLB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].ST +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CT +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CTD +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBGM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBXS +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBCB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBLR +"</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num);
+                socket.close();
+            }
+        }
+    })
+
+    function detailed() {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9087" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG")
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                // alert( msg.data)
+                if (obj.NUM == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+                SetCookie("SHDlength", obj.NUM.length);
+                var num = "";
+                for (var i = 0; i < obj.NUM.length; i++) {
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].NC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UID +"</li>";
+                    // num += "<li class=\"table-cell\">"+ obj.NUM[i].CSRQ +"</li>";
+                    num += "<li class=\"table-cell\">"+ '2018-10-19 11:17:54' +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DJDL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DJMC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].GMRS +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPGM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPXS +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPKC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].XSZE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPZE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPLR +"</li>";
+                    num += "</ul>";
+                }
+                $("#table-body-detailed").html(num);
+                socket.close();
+            }
+        }
+    }
+</script>
+
+
 </body>
 </html>

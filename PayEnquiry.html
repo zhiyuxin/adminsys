@@ -25,13 +25,13 @@
             </div>
             <div class="rightDown">
                 <div class="searchUser">
-                    <input type="text" placeholder="用户昵称或ID">
-                    <input type="button" class="search" value="查询">
+                    <input type="text" id="name" placeholder="请输入昵称或UID" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                    <input type="button" class="search" value="查询" id="search">
                 </div>
                 <ul class="rh_title">
                     <li class="current">充值卡</li>
-                    <li>微信</li>
-                    <li>支付宝</li>
+                    <li onclick="weChat()">微信</li>
+                    <li onclick="aliPay()">支付宝</li>
                 </ul>
                 <ul class="rh_cont">
                     <!--充值卡-->
@@ -55,22 +55,22 @@
                                     <li class="table-cell">渠道</li>
                                 </ul>
                             </div>
-                            <div class="table-row-group">
+                            <div class="table-row-group" id="Card">
                                 <ul class="table-row">
-                                    <li class="table-cell">admin1</li>
-                                    <li class="table-cell">1212</li>
-                                    <li class="table-cell">4565</li>
-                                    <li class="table-cell">一区</li>
-                                    <li class="table-cell">987</li>
-                                    <li class="table-cell">2012-12-05</li>
-                                    <li class="table-cell">10000</li>
-                                    <li class="table-cell">20000</li>
-                                    <li class="table-cell">5000</li>
-                                    <li class="table-cell">官方赠送</li>
-                                    <li class="table-cell">20181205134552</li>
-                                    <li class="table-cell">V5</li>
-                                    <li class="table-cell">一级</li>
-                                    <li class="table-cell">渠道</li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
                                 </ul>
                             </div>
                         </div>
@@ -96,22 +96,22 @@
                                     <li class="table-cell">渠道</li>
                                 </ul>
                             </div>
-                            <div class="table-row-group">
+                            <div class="table-row-group" id="WeChat">
                                 <ul class="table-row">
-                                    <li class="table-cell">admin2</li>
-                                    <li class="table-cell">1212</li>
-                                    <li class="table-cell">4565</li>
-                                    <li class="table-cell">一区</li>
-                                    <li class="table-cell">987</li>
-                                    <li class="table-cell">2012-12-05</li>
-                                    <li class="table-cell">10000</li>
-                                    <li class="table-cell">20000</li>
-                                    <li class="table-cell">5000</li>
-                                    <li class="table-cell">官方赠送</li>
-                                    <li class="table-cell">20181205134552</li>
-                                    <li class="table-cell">V5</li>
-                                    <li class="table-cell">一级</li>
-                                    <li class="table-cell">渠道</li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
                                 </ul>
                             </div>
                         </div>
@@ -137,22 +137,22 @@
                                     <li class="table-cell">渠道</li>
                                 </ul>
                             </div>
-                            <div class="table-row-group">
+                            <div class="table-row-group" id="Alipay">
                                 <ul class="table-row">
-                                    <li class="table-cell">admin3</li>
-                                    <li class="table-cell">1212</li>
-                                    <li class="table-cell">4565</li>
-                                    <li class="table-cell">一区</li>
-                                    <li class="table-cell">987</li>
-                                    <li class="table-cell">2012-12-05</li>
-                                    <li class="table-cell">10000</li>
-                                    <li class="table-cell">20000</li>
-                                    <li class="table-cell">5000</li>
-                                    <li class="table-cell">官方赠送</li>
-                                    <li class="table-cell">20181205134552</li>
-                                    <li class="table-cell">V5</li>
-                                    <li class="table-cell">一级</li>
-                                    <li class="table-cell">渠道</li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
+                                    <li class="table-cell"></li>
                                 </ul>
                             </div>
                         </div>
@@ -161,20 +161,217 @@
                 <!--分页-->
                 <div class="pages">
                     <div class="fenye">
-                        <a href="javascript:;" class="backpage">上一页</a>
-                        <a href="javascript:;"><b>1</b></a>
-                        <a href="javascript:;"><b>2</b></a>
-                        <a href="javascript:;"><b>3</b></a>
-                        <a href="javascript:;"><b>4</b></a>
-                        <a href="javascript:;"><b>5</b></a>
-                        <a href="javascript:;" class="shenlue">...</a>
-                        <a href="javascript:;"><b>100</b></a>
-                        <a href="javascript:;" class="nextpage">下一页</a>
+                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+<script>
+    //查询
+    $("#search").click(function () {
+        var name = document.getElementById("name").value;
+        if(name == ""){
+            alert("昵称或UID不能为空")
+            return
+        }
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9099" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                NAME:name,
+                ST:parseInt(2)
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                // alert(msg.data)
+                if (obj.BL == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+                SetCookie("PAYlength", obj.BL.length);
+                var num = "";
+                for(var i=0;i<obj.BL.length;i++){
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DQ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CZJE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].ZYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].YBTJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DDH +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].VIPDJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].QD +"</li>";
+                    num += "</ul>";
+                }
+                $("#WeChat").html(num);
+                socket.close();
+            }
+        }
+    });
+    //充值卡
+    $(function () {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9099" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(1)
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                // alert(msg.data)
+                // if (obj.BL == null) {
+                //     alert("未查询到任何数据");
+                //     return
+                // }
+                SetCookie("PAYlength", obj.BL.length);
+                var num = "";
+                for(var i=0;i<obj.BL.length;i++){
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DQ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CZJE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].ZYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].YBTJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DDH +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].VIPDJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].QD +"</li>";
+                    num += "</ul>";
+                }
+                $("#Card").html(num);
+                socket.close();
+            }
+        }
+    })
+
+
+    function weChat() {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9099" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(2)
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                // alert(msg.data)
+                if (obj.BL == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+                SetCookie("PAYlength", obj.BL.length);
+                var num = "";
+                for(var i=0;i<obj.BL.length;i++){
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DQ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CZJE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].ZYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].YBTJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DDH +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].VIPDJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].QD +"</li>";
+                    num += "</ul>";
+                }
+                $("#WeChat").html(num);
+                socket.close();
+            }
+        }
+    }
+    //支付宝
+    function aliPay() {
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9099" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(3)
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                var obj = toJson(newdate)
+                // alert(msg.data)
+                if (obj.BL == null) {
+                    alert("未查询到任何数据");
+                    return
+                }
+                SetCookie("PAYlength", obj.BL.length);
+                var num = "";
+                for(var i=0;i<obj.BL.length;i++){
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].NNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DQ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CZJE +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].CYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].ZYBSL +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].YBTJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DDH +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].VIPDJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].DJ +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.BL[i].QD +"</li>";
+                    num += "</ul>";
+                }
+                $("#WeChat").html(num);
+                socket.close();
+            }
+        }
+    }
+</script>
 </body>
 </html>

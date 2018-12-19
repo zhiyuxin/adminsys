@@ -24,8 +24,8 @@
             </div>
             <div class="rightDown">
                 <div class="searchUser">
-                    <input type="text" placeholder="用户昵称或ID">
-                    <input type="button" class="search" value="查询">
+                    <input type="text" placeholder="请输入昵称或ID" id="user" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                    <input type="button" class="search" value="查询" onclick="Select_Bpuser_NN_copy()">
                 </div>
                 <div class="table">
                     <div class="table-row-group">
@@ -41,23 +41,23 @@
                     </div>
                     <div class="table-row-group">
                         <ul class="table-row">
-                            <li class="table-cell">admin</li>
-                            <li class="table-cell">已封禁</li>
-                            <li class="table-cell">2018/12/05</li>
-                            <li class="table-cell">
-                                <input type="text">
+                            <li class="table-cell" id="content_01">admin</li>
+                            <li class="table-cell" id="content_02">已封禁</li>
+                            <li class="table-cell" id="content_03"> 2018/12/05</li>
+                            <li class="table-cell" id="content_04">
+                                <input type="text" id="input_001">
                             </li>
-                            <li class="table-cell">admin</li>
+                            <li class="table-cell" id="content_05">admin</li>
                             <li class="table-cell">
-                                <select name="" id="">
-                                    <option value="">禁言1天</option>
-                                    <option value="">禁言7天</option>
-                                    <option value="">禁言30天</option>
+                                <select name="" id="select_001">
+                                    <option value="0">禁言1天</option>
+                                    <option value="1">禁言7天</option>
+                                    <option value="2">禁言30天</option>
                                 </select>
                             </li>
                             <li class="table-cell operation">
-                                <a href="javascript:;" class="implement">执行</a>
-                                <a href="javascript:;" class="unsealing">解封</a>
+                                <a href="javascript:;" class="implement" onclick="Banned_Banned_To_Post_001()" >执行</a>
+                                <a href="javascript:;" class="unsealing" onclick="Banned_Banned_To_Post_002()">解封</a>
                             </li>
                         </ul>
                     </div>
@@ -65,15 +65,9 @@
                 <!--分页-->
                 <div class="pages">
                     <div class="fenye">
-                        <a href="javascript:;" class="backpage">上一页</a>
-                        <a href="javascript:;"><b>1</b></a>
-                        <a href="javascript:;"><b>2</b></a>
-                        <a href="javascript:;"><b>3</b></a>
-                        <a href="javascript:;"><b>4</b></a>
-                        <a href="javascript:;"><b>5</b></a>
-                        <a href="javascript:;" class="shenlue">...</a>
-                        <a href="javascript:;"><b>100</b></a>
-                        <a href="javascript:;" class="nextpage">下一页</a>
+                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                     </div>
                 </div>
             </div>
@@ -81,4 +75,180 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+
+
+
+
+
+
+<script type="application/javascript">
+
+
+
+    //客户端请求封禁账户信息
+    function Select_Bpuser_NN_copy() {
+        var username = document.getElementById("user").value;
+        //  alert(username)
+
+        if (username == ""){
+            alert("昵称不能为空")
+            return
+        }
+
+        socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+        socket.onopen = function() {
+            socket.send("1000"+GetCookies("UG"));
+            socket.send("9011" + JSON.stringify({
+                BG:"",
+                UG:GetCookies("UG"),
+                SID:parseInt(0),
+                NickName:username,
+                USid:parseInt(0)
+            }));
+            socket.onmessage = function (msg) {
+
+                // alert(msg.data)
+                var newdate="";
+                for(var i=0;i<msg.data.length;i++){
+                    if (i>3){
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate)
+                SetCookie("User",obj.Nickname)
+                $("#content_01").html(obj.Nickname );
+
+                if (obj.Closer=="1234"){
+                    $("#content_02").html("已封禁" );
+                }else{
+                    $("#content_02").html("未封禁" );
+                }
+
+                if (obj.UserClose!=""){
+                    $("#content_03").html(obj.UserClose );
+                }else{
+                    $("#content_03").html("无" );
+                }
+
+                if (obj.WhClose ==""){
+
+                }else{
+                    $("#content_04").html(obj.WhClose);
+                }
+                if (obj.Closer=="1234"){
+                    $("#content_05").html("管理员");
+                }else{
+                    $("#content_05").html("无" );
+                }
+
+
+
+                socket.close()
+            }
+        }
+
+
+
+    }
+
+
+
+    //请求禁言用户
+    function Banned_Banned_To_Post_001(msg) {
+        // var Email_05 = document.getElementById("Email_06").value;
+
+        var input_001 = document.getElementById("input_001").value;
+        var select_001 = document.getElementById("select_001").value;
+         // alert(input_001+"======"+select_001)
+
+
+        if (input_001 == "") {
+            alert("请输入封禁原因")
+            return
+        }
+
+
+
+
+        socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+        socket.onopen = function() {
+            socket.send("1000"+GetCookies("UG"));
+            socket.send("9013" + JSON.stringify({
+                BG:"",
+                UG:GetCookies("UG"),
+                Nickname:GetCookies("User"),
+                SID:parseInt(0),
+                WhClose:input_001,
+                MC:parseInt(select_001)
+            }));
+            socket.onmessage = function (msg) {
+                //alert(msg.data)
+                var newdate="";
+                for(var i=0;i<msg.data.length;i++){
+                    if (i>3){
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate)
+                if(obj.Errcode == -1){
+                    alert("封禁成功")
+                    window.location.href="/static/adminSys/forbiddenWords.html"
+                }else{
+                    alert("封禁失败")
+                    window.location.href="/static/adminSys/forbiddenWords.html"
+                }
+                socket.close()
+            }
+        }
+
+
+    }
+
+    //请求解封用户
+    function Banned_Banned_To_Post_002() {
+        // alert(123)
+        // var input_001 = document.getElementById("input_001").value;
+        // var select_001 = document.getElementById("select_001").value;
+
+
+
+        // alert(input_001+"======"+select_001)
+      var   socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+
+        socket.onopen = function() {
+            socket.send("1000"+GetCookies("UG"));
+            socket.send("9013" + JSON.stringify({
+                BG:"",
+                UG:GetCookies("UG"),
+                Nickname:GetCookies("User"),
+                SID:parseInt(0),
+                WhClose:"",
+                MC:parseInt(3)
+            }));
+            socket.onmessage = function (msg) {
+                //alert(msg.data)
+                var newdate="";
+                for(var i=0;i<msg.data.length;i++){
+                    if (i>3){
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate)
+                if(obj.Errcode == -1){
+                    alert("封禁成功")
+                    window.location.href="/static/adminSys/forbiddenWords.html"
+                }else{
+                    alert("封禁失败")
+                    window.location.href="/static/adminSys/forbiddenWords.html"
+                }
+                socket.close()
+            }
+        }
+    }
+
+
+
+</script>
 </html>

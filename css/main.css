@@ -427,21 +427,34 @@ table>tbody>tr>td{
 }
 .pages .fenye{
     line-height: 60px;
-    text-align: center;
+    text-align: right;
     margin-top: 20px;
+    margin-right: 40px;
+}
+.pages .fenye span{
+    font-size: 15px;
 }
 .pages .fenye a{
-    padding: 5px 18px;
-    color: #000;
-    margin-right: 10px;
+    display: inline-block;
+    width: 38px;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border: 1px solid #ccc;
     text-decoration: none;
-    /* background-color: #f0f0f0; */
-    border-radius: 5px;
-    font-size: 14px;
-    border: 1px solid #000033;
+    color: #ccc;
+    margin-right: -6px;
+    font-size: 15px;
 }
-.pages .fenye a b{
-    font-weight: normal;
+.pages .fenye .backpage{
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.pages .fenye .nextpage{
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
 }
 .pages .fenye a:hover{
     background-color: #000033;
@@ -540,35 +553,66 @@ table>tbody>tr>td{
     font-weight: bold;
 }
 
-/*金币*/
-.mask>.commMask>.goldCoinList{
+/*用户数量*/
+.mask>.commMask>.UserNumList{
     padding-top: 50px;
     display: none;
 }
-.mask>.commMask>.goldCoinList>.goldCoinLeft{
+.mask>.commMask>.UserNumList>.UserNumLeft{
     width: 50%;
     text-align: center;
     overflow: hidden;
     height: 325px;
 }
-.mask>.commMask>.goldCoinList>.goldCoinRight{
+.mask>.commMask>.UserNumList>.UserNumRight{
     width: 50%;
     text-align: center;
     overflow: hidden;
     height: 325px;
 }
-.mask>.commMask>.goldCoinList>.goldCoinLeft,.goldCoinRight>ul>li{
+.mask>.commMask>.UserNumList>.UserNumLeft,.UserNumRight>ul>li{
     line-height: 30px;
     font-size: 15px;
 }
-.mask>.commMask>.goldCoinList>.goldCoinLeft>ul>li>span{
+.mask>.commMask>.UserNumList>.UserNumLeft>ul>li>span{
     font-size: 18px;
     font-weight: bold;
 }
-.mask>.commMask>.goldCoinList>.goldCoinRight>ul>li>span{
+.mask>.commMask>.UserNumList>.UserNumRight>ul>li>span{
     font-size: 18px;
     font-weight: bold;
 }
+/*元宝*/
+.mask>.commMask>.yuanBaoList{
+    padding-top: 50px;
+    display: none;
+}
+.mask>.commMask>.yuanBaoList>.yuanBaoLeft{
+    width: 50%;
+    text-align: center;
+    overflow: hidden;
+    height: 325px;
+}
+.mask>.commMask>.yuanBaoList>.yuanBaoRight{
+    width: 50%;
+    text-align: center;
+    overflow: hidden;
+    height: 325px;
+}
+.mask>.commMask>.yuanBaoList>.yuanBaoLeft,.yuanBaoRight>ul>li{
+    line-height: 30px;
+    font-size: 15px;
+}
+.mask>.commMask>.yuanBaoList>.yuanBaoLeft>ul>li>span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.mask>.commMask>.yuanBaoList>.yuanBaoRight>ul>li>span{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
 /*时间查询*/
 /**/
 .public {
@@ -673,6 +717,34 @@ table>tbody>tr>td{
     outline: none;
     margin-top: 4px;
 }
+
+/*渠道收入*/
+.sel{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.sel>select{
+    font-size: 15px;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+}
+.sel>input[type=button]{
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+    background: #000033;
+    border: none;
+    border-radius: 3px;
+    color: #c96;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 5px;
+    outline: none;
+}
+
 /*适配*/
 @media screen and (min-width: 1200px) and (max-width: 1680px) {
     table>tbody>tr>td{

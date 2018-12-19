@@ -9,7 +9,6 @@
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/rankingList.js"></script>
-
 </head>
 <body>
 <div class="content">
@@ -25,8 +24,8 @@
             </div>
             <div class="rightDown">
                 <div class="searchUser">
-                    <input type="text" placeholder="请输入ID或者手机号">
-                    <input type="button" class="search" value="查询">
+                    <input type="text" id="name" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" placeholder="请输入昵称或UID" >
+                    <input type="button" class="search" id="search" value="查询">
                 </div>
                 <div class="table">
                     <div class="table-row-group">
@@ -47,37 +46,31 @@
                             <li class="table-cell">设备</li>
                         </ul>
                     </div>
-                    <div class="table-row-group">
+                    <div class="table-row-group" id="table-body">
                         <ul class="table-row">
-                            <li class="table-cell">admin</li>
-                            <li class="table-cell">1000</li>
-                            <li class="table-cell">001</li>
-                            <li class="table-cell">0001</li>
-                            <li class="table-cell">P1</li>
-                            <li class="table-cell">V1</li>
-                            <li class="table-cell yuanBao">100</li>
-                            <li class="table-cell goldCoin">200</li>
-                            <li class="table-cell">300</li>
-                            <li class="table-cell">400</li>
-                            <li class="table-cell">1000</li>
-                            <li class="table-cell">2000</li>
-                            <li class="table-cell">8</li>
-                            <li class="table-cell">PC</li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell yuanBao"></li>
+                            <li class="table-cell goldCoin"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
+                            <li class="table-cell"></li>
                         </ul>
                     </div>
                 </div>
                 <!--分页-->
                 <div class="pages">
                     <div class="fenye">
-                        <a href="javascript:;" class="backpage">上一页</a>
-                        <a href="javascript:;"><b>1</b></a>
-                        <a href="javascript:;"><b>2</b></a>
-                        <a href="javascript:;"><b>3</b></a>
-                        <a href="javascript:;"><b>4</b></a>
-                        <a href="javascript:;"><b>5</b></a>
-                        <a href="javascript:;" class="shenlue">...</a>
-                        <a href="javascript:;"><b>100</b></a>
-                        <a href="javascript:;" class="nextpage">下一页</a>
+                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                     </div>
                 </div>
                 <!--弹层-->
@@ -91,31 +84,31 @@
                             <div class="yuanBaoLeft fl">
                                 <ul>
                                     <li><span>时间</span></li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
                                 </ul>
                             </div>
                             <div class="yuanBaoRight fr">
                                 <ul>
                                     <li><span>事件</span></li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
-                                    <li>玩家XXX持有元宝：10000000000个</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
                                 </ul>
                             </div>
                         </div>
@@ -124,46 +117,40 @@
                             <div class="goldCoinLeft fl">
                                 <ul>
                                     <li><span>时间</span></li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
-                                    <li>2018-11-29&nbsp;&nbsp;17:25:25</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
                                 </ul>
                             </div>
                             <div class="goldCoinRight fr">
                                 <ul>
                                     <li><span>事件</span></li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
-                                    <li>玩家XXX持有金币：10000000000个</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
                                 </ul>
                             </div>
                         </div>
                         <!--分页-->
-                        <div class="maskPages">
+                        <div class="pages">
                             <div class="fenye">
-                                <a href="javascript:;" class="backpage">上一页</a>
-                                <a href="javascript:;"><b>1</b></a>
-                                <a href="javascript:;"><b>2</b></a>
-                                <a href="javascript:;"><b>3</b></a>
-                                <a href="javascript:;"><b>4</b></a>
-                                <a href="javascript:;"><b>5</b></a>
-                                <a href="javascript:;" class="shenlue">...</a>
-                                <a href="javascript:;"><b>100</b></a>
-                                <a href="javascript:;" class="nextpage">下一页</a>
+                                <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
+                                <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
+                                <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                             </div>
                         </div>
                     </div>
@@ -173,4 +160,186 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+
+
+
+<script>
+
+
+
+
+
+
+    $(function () {
+
+            // alert(GetCookies("states"))
+
+        // BG string //后台的guid
+        // UG string //管理员的guid
+        // //UID    []string   //用户sid和用户名
+        // ST  int //查询排行榜 标识 （1 个人金币排行榜 2 元宝排行榜 3玫瑰排行榜 4 核弹排行榜 5  充值排行榜 6 游戏内赢取排行榜 7  在线时间排行榜 ）
+        // SID int //大区id
+        // SN  int //开始下标
+        // NUM int //每页显示的个数
+
+
+        socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+        socket.onopen = function() {
+            socket.send("1000"+GetCookies("UG"));
+            socket.send("9077" + JSON.stringify({
+                BG:"",
+                UG:GetCookies("UG"),
+                ST:parseInt(0),
+                SID:parseInt(0),
+                SN:parseInt(5),
+                NUM:parseInt(16),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate="";
+                for(var i=0;i<msg.data.length;i++){
+                    if (i>3){
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+
+                obj = toJson(newdate)
+                if (obj.UMG == null) {
+                    alert("未查询到任何数据")
+                    return
+                }
+                // alert(newdate)
+                // $("table:eq(0) tr:gt(0)").remove();
+
+                SetCookie("HPlength", obj.UMG.length)
+
+                var num = ""
+                for (var i = 0; i < obj.UMG.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul  class='table-row'>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].NickName+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZH+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Id+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Uid+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Lv+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Vip+"</li>"
+                    num += "<li class='table-cell yuanBao' onclick='yuanbao()' >"+obj.UMG[i].GoldN+"</li>"
+                    num += "<li class='table-cell goldCoin'  onclick='jinbi()'>"+obj.UMG[i].Coin+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].MG+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].HD+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Rmb+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].YXN+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZXTM+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
+                    num += "</ul>"
+                }
+                $("#table-body").html(num)
+
+                socket.close()
+            }
+        }
+    })
+
+
+    //查询玩家信息
+    $("#search").click(function () {
+        var name = document.getElementById("name").value;
+        // alert(name)
+        if(name == ""){
+            alert("昵称或UID不能为空")
+            return
+        }
+
+        //创建一个数组
+        var list = new Array();
+        //将需要查询的值push到数组中（字段UID为数组形式）
+        list.push(name);
+        var num = "";
+        SetCookie("Ste",num)
+        SetCookie("pages",0)
+        socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+        socket.onopen = function() {
+            socket.send("1000"+GetCookies("UG"));
+            socket.send("9003" + JSON.stringify({
+                BG:"",
+                UG:GetCookies("UG"),
+                ST:parseInt(num),
+                SID:parseInt(0),
+                SN:parseInt(0),
+                NUM:parseInt(16),
+                UID:list
+            }));
+            socket.onmessage = function (msg) {
+                var newdate="";
+                for(var i=0;i<msg.data.length;i++){
+                    if (i>3){
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate)
+                if (obj.UMG == null) {
+                    alert("未查询到任何数据")
+                    return
+                }
+                // alert(newdate)
+                $("table:eq(0) tr:gt(0)").remove();
+
+
+                // alert(obj.CT)
+                SetCookie("HPlength",obj.CT)
+                var num = ""
+                for (var i = 0; i < obj.UMG.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul  class='table-row'>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].NickName+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZH+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Id+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Uid+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Lv+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Vip+"</li>"
+                    num += "<li class='table-cell yuanBao' onclick='yuanbao()' >"+obj.UMG[i].GoldN+"</li>"
+                    num += "<li class='table-cell goldCoin'  onclick='jinbi()'>"+obj.UMG[i].Coin+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].MG+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].HD+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Rmb+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].YXN+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZXTM+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
+                    num += "</ul>"
+                }
+
+                $("#table-body").html(num)
+
+                socket.close()
+            }
+        }
+    });
+
+
+
+
+
+    function yuanbao() {
+
+        $(".mask").fadeToggle(200);
+        $(".yuanBaoList").show(200);
+        $(".maskPages").show(200);
+    }
+
+
+    function jinbi() {
+        $(".mask").fadeToggle(200);
+        $(".goldCoinList").show(200);
+        $(".maskPages").show(200);
+    }
+
+</script>
+
+
+
+
+
+
+
 </html>

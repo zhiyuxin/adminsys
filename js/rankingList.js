@@ -5,3 +5,4 @@ $(function () {
         $(this).addClass("other");
     });
 })
+

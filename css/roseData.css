@@ -154,7 +154,7 @@
     outline: none;
     padding: 0 10px 0 10px;
     font-size: 14px;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
 }
 .searchUser>.search{
     margin-left: 6px;

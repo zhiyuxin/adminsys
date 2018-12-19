@@ -9,7 +9,6 @@
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/echarts.common.min.js"></script>
-    <script src="js/onlineData.js"></script>
 </head>
 <body>
 <div class="content">
@@ -68,24 +67,77 @@
                 <div class="dailyList">
                     <div class="list">
                         <ul>
-                            <li><p>1</p><p>新增数据</p></li>
-                            <li><p>2</p><p>新增角色数</p></li>
-                            <li><p>3</p><p>新增设备数</p></li>
-                            <li><p>4</p><p>日活跃用户</p></li>
-                            <li><p>5</p><p>周活跃用户</p></li>
-                            <li><p>6</p><p>月活跃用户</p></li>
-                            <li><p>7</p><p>回流用户</p></li>
-                            <li><p>8</p><p>活跃账号时长</p></li>
-                            <li><p>9</p><p>流失用户</p></li>
-                            <li><p>10</p><p>用户留存率</p></li>
-                            <li><p>11</p><p>当日玩家在线数据</p></li>
+                            <li><p id="Online_001">0</p>
+                                <p>新增数据</p></li>
+                            <li><p id="Online_002">0</p>
+                                <p>新增角色数</p></li>
+                            <li><p id="Online_003">0</p>
+                                <p>新增设备数</p></li>
+                            <li><p id="Online_004">0</p>
+                                <p>日活跃用户</p></li>
+                            <li><p id="Online_005">0</p>
+                                <p>周活跃用户</p></li>
+                            <li><p id="Online_006">0</p>
+                                <p>月活跃用户</p></li>
+                            <li><p id="Online_007">0</p>
+                                <p>回流用户</p></li>
+                            <li><p id="Online_008">0</p>
+                                <p>活跃账号时长</p></li>
+                            <li><p id="Online_009">0</p>
+                                <p>流失用户</p></li>
+                            <li><p id="Online_010">0</p>
+                                <p>用户留存率</p></li>
+                            <li><p id="Online_011">0</p>
+                                <p>当日玩家在线数据</p></li>
                         </ul>
                     </div>
                     <div class="onecharts" id="onecharts"></div>
                 </div>
             </div>
 
-      </div>
+        </div>
     </div>
 </div>
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+<script src="js/onlineData.js"></script>
+<script>
+    $(function () {
+        SetCookie("statice", 1);
+
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9055" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG")
+            }));
+            socket.onmessage = function (msg) {
+
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                obj = toJson(newdate);
+                $("#Online_001").html(obj.NewUser);
+                $("#Online_002").html(obj.NewPlayer);
+                $("#Online_003").html(obj.NewPhone);
+                $("#Online_004").html(obj.DAU);
+                $("#Online_005").html(obj.WAU);
+                $("#Online_006").html(obj.MAU);
+                $("#Online_007").html(obj.BackUser);
+                $("#Online_008").html(obj.YUser);
+                $("#Online_009").html(obj.LossUserData);
+                $("#Online_010").html("0");
+                $("#Online_011").html("0");
+
+                socket.close();
+
+            }
+        }
+    })
+
+</script>
 </body>

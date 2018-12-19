@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/incomeDaily.css">
     <script src="js/jquery-1.12.4.min.js"></script>
-    <!--<script src="js/realTimeDataFishing.js"></script>-->
+    <script src="js/incomeDaily.js"></script>
     <script src="js/main.js"></script>
     <script src="js/echarts.common.min.js"></script>
-    <script src="js/incomeDaily.js"></script>
+
 </head>
 <body>
 <div class="content">
@@ -69,22 +69,20 @@
                 <div class="dailyList">
                     <div class="list">
                         <ul>
-                            <li><p>1</p><p>总收入</p></li>
-                            <li><p>2</p><p>总付费用户数</p></li>
-                            <li><p>3</p><p>用户付费率</p></li>
-                            <li><p>4</p><p>付费ARPPU</p></li>
-                            <li><p>5</p><p>老用户再次付费收入</p></li>
-                            <li><p>6</p><p>老用户付费数</p></li>
-                            <li><p>7</p><p>老用户付费率</p></li>
-                            <li><p>8</p><p>ARPU</p></li>
-                            <li><p>9</p><p>付费渗透率</p></li>
-                            <li><p>10</p><p>LTV</p></li>
-                            <li><p>11</p><p>渠道收入</p></li>
-                            <li><p>12</p><p>区服收入</p></li>
-                            <li><p>13</p><p>新付费用户收入</p></li>
-                            <li><p>14</p><p>新付费用户数</p></li>
-                            <li><p>15</p><p>新增用户付费率</p></li>
-                            <li><p>16</p><p>新增ARPPU</p></li>
+                            <li><p id="Online_001"></p><p>总收入</p></li>
+                            <li><p id="Online_002"></p><p>总付费用户数</p></li>
+                            <li><p id="Online_003"></p><p>用户付费率</p></li>
+                            <li><p id="Online_004"></p><p>付费ARPPU</p></li>
+                            <li><p id="Online_005"></p><p>老用户再次付费收入</p></li>
+                            <li><p id="Online_006"></p><p>老用户付费数</p></li>
+                            <li><p id="Online_007"></p><p>老用户付费率</p></li>
+                            <li><p id="Online_008"></p><p>ARPU</p></li>
+                            <li><p id="Online_009"></p><p>付费渗透率</p></li>
+                            <li><p id="Online_010"></p><p>LTV</p></li>
+                            <li><p id="Online_011"></p><p>新付费用户收入</p></li>
+                            <li><p id="Online_012"></p><p>新付费用户数</p></li>
+                            <li><p id="Online_013"></p><p>新增用户付费率</p></li>
+                            <li><p id="Online_014"></p><p>新增ARPPU</p></li>
                         </ul>
                     </div>
                     <div class="echarts" id="inecharts"></div>
@@ -94,4 +92,63 @@
       </div>
     </div>
 </div>
+
+
+<script type="text/javascript" src="/static/js/chartroom.js"></script>
+<script type="text/javascript" src="/static/js/Cookie.js"></script>
+<script src="js/incomeDaily.js"></script>
+<script>
+    SetCookie("statice",1);
+
+    socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
+    socket.onopen = function () {
+        socket.send("1000" + GetCookies("UG"));
+        socket.send("9061" + JSON.stringify({
+            BG:"",
+            UG:GetCookies("UG")
+        }));
+        socket.onmessage = function (msg) {
+
+            var newdate = "";
+            for(var i =0;i<msg.data.length;i++){
+                if(i>3){
+                    newdate = newdate + msg.data[i];
+                }
+            }
+            obj = toJson(newdate);
+
+            //用户付费率
+            var UserRate = ((obj.AUser) / (obj.PayUser)).toFixed(2) * 100;
+            //付费ARPPU
+            var ArppuRate = ((obj.PayUser) / (obj.Get)).toFixed(2) * 100;
+
+            //新增用户付费率
+            var NewUserRate = ((obj.NUser) / (obj.NUserPay)).toFixed(2) * 100;
+
+            $("#Online_001").html(obj.Get);
+            $("#Online_002").html(obj.PayUser);
+            $("#Online_003").html(UserRate + "%");
+            $("#Online_004").html(ArppuRate + "%");
+            // $("#Online_005").html(obj.Get);
+            // $("#Online_006").html(obj.Get);
+            // $("#Online_007").html(obj.Get);
+            // $("#Online_008").html(obj.Get);
+            // $("#Online_009").html(obj.Get);
+            // $("#Online_010").html(obj.Get);
+            $("#Online_011").html(obj.NUserPay);
+            $("#Online_012").html(obj.NUser);
+            $("#Online_013").html(NewUserRate + "%");
+            // $("#Online_014").html(obj.Get);
+
+            socket.close();
+
+        }
+    }
+</script>
 </body>
+
+
+
+
+
+
