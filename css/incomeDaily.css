@@ -116,6 +116,7 @@
     height: auto;
     /*border: 1px solid #000;*/
     padding-bottom: 50px;
+    position: relative;
 }
 .dailyList>.list{
     padding-bottom: 50px;
@@ -138,54 +139,24 @@
 .dailyList>.list>ul>li{
     background: rgba(0, 0, 51, 0.67);
 }
-/*.dailyList>.list>ul>li:nth-child(1){*/
-/*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(2){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(3){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(4){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(5){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(6){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(7){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(8){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(9){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(10){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(11){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(12){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(13){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(14){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(15){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
-/*.dailyList>.list>ul>li:nth-child(16){*/
-    /*background: rgb(69, 52, 174);*/
-/*}*/
+.dailyList input[type=button]{
+    display: inline-block;
+    width: 105px;
+    height: 30px;
+    line-height: 30px;
+    background: #000033;
+    border: none;
+    border-radius: 3px;
+    color: #c96;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 331px;
+    left: 90px;
+    z-index: 999;
+
+}
 .dailyList>.list>ul>li>p:first-child{
     height: 70px;
     line-height: 70px;
@@ -202,6 +173,7 @@
 /*柱状图*/
 .dailyList>.echarts{
     height: 500px;
+    z-index: 1;
 }
 @media screen and (min-width: 1200px) and (max-width: 1680px){
     .dailyList>.list>ul>li {
