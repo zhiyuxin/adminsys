@@ -135,6 +135,29 @@
     text-align: center;
     font-size: 14px;
 }
+.mask>.commMask {
+    position: relative;
+    width: 96%;
+    height: 600px;
+    margin: 5% 2% 0 2%;
+    background: #fff;
+}
+.maskTab{
+    width: 96%;
+    position: absolute;
+    top: 10%;
+    margin: 0 2% 0 2%;
+}
+.pages{
+    position: absolute;
+    bottom: 0;
+}
+.pages .fenye {
+    line-height: 60px;
+    text-align: right;
+    margin-top: 0;
+    margin-right: 40px;
+}
 /*用户数量弹层*/
 .UserNum{
     color: blue;
@@ -144,5 +167,21 @@
 @media screen and (min-width: 1200px) and (max-width: 1680px) {
     .table-cell {
         padding: 5px 0 5px 0;
+    }
+    .mask>.commMask>.close {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+    .mask>.commMask {
+        position: relative;
+        width: 96%;
+        height: 500px;
+        margin: 5% 2% 0 2%;
+        background: #fff;
     }
 }

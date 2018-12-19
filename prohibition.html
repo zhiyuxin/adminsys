@@ -40,14 +40,14 @@
                         </ul>
                     </div>
                     <div class="table-row-group">
-                        <ul class="table-row">
-                            <li class="table-cell" id="content_01">admin</li>
-                            <li class="table-cell" id="content_02">已封禁</li>
-                            <li class="table-cell" id="content_03">2018/12/05</li>
+                        <ul class="table-row" style="opacity: 0;">
+                            <li class="table-cell" id="content_01"></li>
+                            <li class="table-cell" id="content_02"></li>
+                            <li class="table-cell" id="content_03"></li>
                             <li class="table-cell" id="content_04">
                                 <input type="text" id="input_001">
                             </li>
-                            <li class="table-cell" id="content_05">admin</li>
+                            <li class="table-cell" id="content_05"></li>
                             <li class="table-cell">
                                 <select name="" id="select_001">
                                     <option value="0">封禁7天</option>
@@ -60,14 +60,6 @@
                                 <a href="javascript:;" class="unsealing" onclick="Banned_Banned_To_Post_001()">解封</a>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <!--分页-->
-                <div class="pages">
-                    <div class="fenye">
-                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
-                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
-                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
                     </div>
                 </div>
             </div>
@@ -139,7 +131,7 @@
                 }else{
                     $("#content_05").html("无" );
                 }
-
+                $(".table-row").css("opacity","1");
                 //alert(obj.UG)
                 // $("table:eq(0) tr:gt(0)").remove();
 
