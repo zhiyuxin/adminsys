@@ -79,6 +79,14 @@
                                 </ul>
                             </div>
                         </div>
+                        <!--分页-->
+                        <div class="pages">
+                            <div class="fenye">
+                                <span>共<em id="total">0</em>条，本页显示<em id="Page">0</em>条，当前是第<em id="num">1</em>页</span>
+                                <a href="javascript:;" class="backpage" onclick="Fpages()" title="上一页"><<</a>
+                                <a href="javascript:;" class="nextpage" onclick="Npages()" title="下一页">>></a>
+                            </div>
+                        </div>
                     </li>
                     <!--销售明细-->
                     <li>
@@ -118,14 +126,6 @@
                         </div>
                     </li>
                 </ul>
-                <!--分页-->
-                <div class="pages">
-                    <div class="fenye">
-                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
-                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
-                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -134,12 +134,16 @@
 <script type="text/javascript" src="/static/js/Cookie.js"></script>
 <script>
     $(function () {
+        SetCookie("SFpage", 10);
+        SetCookie("SFpage2", 10);
         var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
         socket.onopen = function () {
             socket.send("1000" + GetCookies("UG"));
             socket.send("9085" + JSON.stringify({
                 BG: "",
-                UG: GetCookies("UG")
+                UG: GetCookies("UG"),
+                SN: parseInt(0),
+                NUM: parseInt(10),
             }));
             socket.onmessage = function (msg) {
                 var newdate = "";
@@ -148,12 +152,23 @@
                         newdate = newdate + msg.data[i];
                     }
                 }
+                // alert(msg.data)
+                //计算本页显示页码
+                var num = GetCookies("SFpage") / 10;
+                $("#num").html(num);
+
                 var obj = toJson(newdate)
                  // alert( msg.data)
                 if (obj.NUM == null) {
-                    alert("未查询到任何数据");
+                    alert("未查询到数据");
                     return
                 }
+
+                //共显示条数
+                $("#total").html(obj.CT);
+                //本页显示
+                $("#Page").html(obj.NUM.length);
+
                 SetCookie("SHlength", obj.NUM.length);
                 //出售道具总数:  销售总额:  购买人数:
                 var total = "";
@@ -193,7 +208,9 @@
             socket.send("1000" + GetCookies("UG"));
             socket.send("9087" + JSON.stringify({
                 BG: "",
-                UG: GetCookies("UG")
+                UG: GetCookies("UG"),
+                SN: parseInt(0),
+                NUM: parseInt(1),
             }));
             socket.onmessage = function (msg) {
                 var newdate = "";
@@ -202,10 +219,11 @@
                         newdate = newdate + msg.data[i];
                     }
                 }
+
                 var obj = toJson(newdate)
                 // alert( msg.data)
                 if (obj.NUM == null) {
-                    alert("未查询到任何数据");
+                    alert("未查询到数据");
                     return
                 }
                 SetCookie("SHDlength", obj.NUM.length);
@@ -229,6 +247,161 @@
                 }
                 $("#table-body-detailed").html(num);
                 socket.close();
+            }
+        }
+    }
+    //上一页
+    function Fpages() {
+
+        var SFpage = GetCookies("SFpage");
+        var SFpage2 = GetCookies("SFpage2");
+        var Smsg_01 = parseInt(SFpage2) - 10;
+        SFpage -= parseInt(10);
+        SetCookie("SFpage", SFpage);
+        SetCookie("SFpage2", Smsg_01);
+        var Snextpage =  SFpage - 10;
+
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9085" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(0),
+                SID: parseInt(0),
+                SN: parseInt(Snextpage),
+                NUM: parseInt(SFpage),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                //拿到SetCookies值，除以每页显示的条数，就能计算出页码
+                var num = GetCookies("SFpage") / 10;
+                $("#num").html(num);
+                if (Snextpage < 0) {
+                    $("#num").html(1);
+                    alert("当前为第一页")
+                    SetCookie("Fpage2", 0);
+                    return
+
+                }
+                obj = toJson(newdate)
+                if (obj.NUM == null) {
+                    alert("未查询到数据")
+                    return
+                }
+
+                //共显示条数
+                $("#total").html(obj.CT);
+                //本页显示
+                $("#Page").html(obj.NUM.length);
+
+                SetCookie("HPlength", obj.NUM.length)
+
+                var num = ""
+                for (var i = 0; i < obj.NUM.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].NC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].GM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].XTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].FTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPLB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].ST +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CT +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CTD +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBGM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBXS +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBCB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBLR +"</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num)
+                socket.close()
+            }
+        }
+    }
+    //下一页
+    function Npages() {
+        var SFpage = GetCookies("SFpage");
+        var SFpage2 = GetCookies("SFpage2");
+        var Smsg_01 = parseInt(SFpage) + 10;
+        SFpage2 +=  parseInt(10)
+        SetCookie("SFpage2", SFpage2);
+        SetCookie("SFpage", Smsg_01);
+
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9085" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(0),
+                SID: parseInt(0),
+                SN: parseInt(SFpage),
+                NUM: parseInt(Smsg_01),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+
+                // alert(msg.data)
+                obj = toJson(newdate)
+                if (obj.NUM == null) {
+                    alert("未查询到数据")
+                    return
+                }
+
+
+                SetCookie("obj_CT", obj.CT)
+                //判断当前页是否为最后一页
+                if(GetCookies("obj_CT") < SFpage){
+                    alert("最后一页");
+                    return
+                }
+
+
+                SetCookie("HPlength", obj.NUM.length)
+                //本页显示
+                $("#Page").html(obj.NUM.length);
+                //计算页码
+                var num = GetCookies("SFpage") / 10;
+                $("#num").html(num);
+
+                var num = ""
+                for (var i = 0; i < obj.NUM.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].NC +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UID +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].UNAME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].GM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].XTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].FTIME +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CPLB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].ST +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CT +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CTD +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].CB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBGM +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBXS +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBCB +"</li>";
+                    num += "<li class=\"table-cell\">"+ obj.NUM[i].DBLR +"</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num)
+                socket.close()
             }
         }
     }

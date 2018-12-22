@@ -68,9 +68,9 @@
                 <!--分页-->
                 <div class="pages">
                     <div class="fenye">
-                        <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
-                        <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
-                        <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
+                        <span>共<em id="total"></em>条，本页显示<em id="Page"></em>条，当前是第<em id="num"></em>页</span>
+                        <a href="javascript:;" class="backpage" onclick="Fpages()" title="上一页"><<</a>
+                        <a href="javascript:;" class="nextpage" onclick="Npages()" title="下一页">>></a>
                     </div>
                 </div>
                 <!--弹层-->
@@ -148,9 +148,9 @@
                         <!--分页-->
                         <div class="pages">
                             <div class="fenye">
-                                <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
-                                <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
-                                <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
+                                <span>共<em id="total"></em>条，本页显示<em id="Page"></em>条，当前是第<em id="num"></em>页</span>
+                                <a href="javascript:;" class="backpage" onclick="Fpages()" title="上一页"><<</a>
+                                <a href="javascript:;" class="nextpage" onclick="Npages()" title="下一页">>></a>
                             </div>
                         </div>
                     </div>
@@ -162,29 +162,10 @@
 </body>
 <script type="text/javascript" src="/static/js/chartroom.js"></script>
 <script type="text/javascript" src="/static/js/Cookie.js"></script>
-
-
-
 <script>
-
-
-
-
-
-
     $(function () {
-
-            // alert(GetCookies("states"))
-
-        // BG string //后台的guid
-        // UG string //管理员的guid
-        // //UID    []string   //用户sid和用户名
-        // ST  int //查询排行榜 标识 （1 个人金币排行榜 2 元宝排行榜 3玫瑰排行榜 4 核弹排行榜 5  充值排行榜 6 游戏内赢取排行榜 7  在线时间排行榜 ）
-        // SID int //大区id
-        // SN  int //开始下标
-        // NUM int //每页显示的个数
-
-
+        SetCookie("RFpage", 10);
+        SetCookie("RFpage2", 10);
         socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
         socket.onopen = function() {
             socket.send("1000"+GetCookies("UG"));
@@ -193,8 +174,8 @@
                 UG:GetCookies("UG"),
                 ST:parseInt(0),
                 SID:parseInt(0),
-                SN:parseInt(5),
-                NUM:parseInt(16),
+                SN:parseInt(0),
+                NUM:parseInt(10),
             }));
             socket.onmessage = function (msg) {
                 var newdate="";
@@ -203,14 +184,21 @@
                         newdate = newdate + msg.data[i];
                     }
                 }
+                //计算本页显示页码
+                var num = GetCookies("RFpage") / 10;
+                $("#num").html(num);
 
                 obj = toJson(newdate)
                 if (obj.UMG == null) {
-                    alert("未查询到任何数据")
+                    alert("未查询到数据")
                     return
                 }
                 // alert(newdate)
                 // $("table:eq(0) tr:gt(0)").remove();
+                //共显示条数
+                $("#total").html(obj.CT);
+                //本页显示
+                $("#Page").html(obj.UMG.length);
 
                 SetCookie("HPlength", obj.UMG.length)
 
@@ -279,9 +267,11 @@
                 }
                 obj = toJson(newdate)
                 if (obj.UMG == null) {
-                    alert("未查询到任何数据")
+                    alert("未查询到数据")
                     return
                 }
+                //本页显示
+                $("#Page").html(obj.UMG.length);
                 // alert(newdate)
                 $("table:eq(0) tr:gt(0)").remove();
 
@@ -316,7 +306,160 @@
         }
     });
 
+    //上一页
+    function Fpages() {
 
+        var RFpage = GetCookies("RFpage");
+        var RFpage2 = GetCookies("RFpage2");
+        var Rmsg_01 = parseInt(RFpage2) - 10;
+        RFpage -= parseInt(10);
+        SetCookie("RFpage", RFpage);
+        SetCookie("RFpage2", Rmsg_01);
+        var Rnextpage =  RFpage - 10;
+
+        var NUMS = GetCookies("NUM");
+
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9077" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(NUMS),
+                SID: parseInt(0),
+                SN: parseInt(Rnextpage),
+                NUM: parseInt(RFpage),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+                //拿到SetCookies值，除以每页显示的条数，就能计算出页码
+                var num = GetCookies("RFpage") / 10;
+                $("#num").html(num);
+                if (Rnextpage < 0) {
+                    $("#num").html(1);
+                    alert("当前为第一页")
+                    SetCookie("RFpage2", 0);
+                    return
+
+                }
+                obj = toJson(newdate)
+                if (obj.UMG == null) {
+                    alert("未查询到数据")
+                    return
+                }
+                //本页显示
+                $("#Page").html(obj.UMG.length);
+
+                SetCookie("HPlength", obj.UMG.length)
+
+
+
+                var num = ""
+                for (var i = 0; i < obj.UMG.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul  class='table-row'>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].NickName+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZH+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Id+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Uid+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Lv+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Vip+"</li>"
+                    num += "<li class='table-cell yuanBao' onclick='yuanbao()' >"+obj.UMG[i].GoldN+"</li>"
+                    num += "<li class='table-cell goldCoin'  onclick='jinbi()'>"+obj.UMG[i].Coin+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].MG+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].HD+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Rmb+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].YXN+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZXTM+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
+                    num += "</ul>"
+                }
+                $("#table-body").html(num)
+                socket.close()
+            }
+        }
+    }
+
+    //下一页
+    function Npages() {
+        var RFpage = GetCookies("RFpage");
+        var RFpage2 = GetCookies("RFpage2");
+        var Rmsg_01 = parseInt(RFpage) + 10;
+        RFpage2 +=  parseInt(10)
+        SetCookie("RFpage2", RFpage2);
+        SetCookie("RFpage", Rmsg_01);
+
+        var NUMS = GetCookies("NUM");
+        // alert(NUMS)
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9077" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(NUMS),
+                SID: parseInt(0),
+                SN: parseInt(RFpage),
+                NUM: parseInt(Rmsg_01),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+
+                obj = toJson(newdate)
+                if (obj.UMG == null) {
+                    alert("未查询到数据")
+                    return
+                }
+
+                SetCookie("Robj_CT", obj.CT)
+                //判断当前页是否为最后一页
+                if(GetCookies("Robj_CT") < RFpage){
+                    alert("最后一页");
+                    return
+                }
+
+                SetCookie("HPlength", obj.UMG.length)
+                //本页显示
+                $("#Page").html(obj.UMG.length);
+                //计算页码
+                var num = GetCookies("RFpage") / 10;
+                $("#num").html(num);
+
+                var num = ""
+                for (var i = 0; i < obj.UMG.length; i++) {
+                    // var tr = $("<tr>");
+                    num += "<ul  class='table-row'>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].NickName+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZH+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Id+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Uid+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Lv+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Vip+"</li>"
+                    num += "<li class='table-cell yuanBao' onclick='yuanbao()' >"+obj.UMG[i].GoldN+"</li>"
+                    num += "<li class='table-cell goldCoin'  onclick='jinbi()'>"+obj.UMG[i].Coin+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].MG+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].HD+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].Rmb+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].YXN+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].ZXTM+"</li>"
+                    num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
+                    num += "</ul>"
+                }
+                $("#table-body").html(num)
+                socket.close()
+            }
+        }
+    }
 
 
 

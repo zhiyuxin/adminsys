@@ -48,9 +48,9 @@
                     <!--分页-->
                     <div class="pages">
                         <div class="fenye">
-                            <span>共<em>125</em>条，本页显示<em>10</em>条，当前是第<em>1</em>页</span>
-                            <a href="javascript:;" class="backpage" onclick="Select_User_infrom(1)" title="上一页"><<</a>
-                            <a href="javascript:;" class="nextpage" onclick="Select_User_infrom(2)" title="下一页">>></a>
+                            <span>共<em id="total"></em>条，本页显示<em id="Page"></em>条，当前是第<em id="num"></em>页</span>
+                            <a href="javascript:;" class="backpage" onclick="Fpages()" title="上一页"><<</a>
+                            <a href="javascript:;" class="nextpage" onclick="Npages()" title="下一页">>></a>
                         </div>
                     </div>
                 </div>
@@ -66,6 +66,63 @@
 <script type="text/javascript" src="/static/js/Cookie.js"></script>
 <script src="js/vipecharts.js"></script>
 <script>
+
+    $(function () {
+        SetCookie("VFpage", 10);
+        SetCookie("VFpage2", 10);
+        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9047" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                SN: parseInt(0),
+                NUM: parseInt(10),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+
+                // alert(msg.data)
+
+                obj = toJson(newdate)
+                // alert(obj)
+                if (obj.Viplist == null) {
+                    alert("未查询到数据");
+                    return
+                }
+                // alert(obj.CT)
+
+                //计算本页显示页码
+                var num = GetCookies("VFpage") / 10;
+                $("#num").html(num);
+
+                //共显示条数
+                $("#total").html(obj.CT);
+
+                //本页显示条数
+                $("#Page").html(obj.Viplist.length);
+
+                SetCookie("HPlength", obj.Viplist.length);
+                //定义一个空的变量，将需要展示的数据放到里面
+                var num = "";
+                for (var i = 0; i < obj.Viplist.length; i++) {
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\"  id=\"name\">" + obj.Viplist[i].NickName + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"VGrade\">" + obj.Viplist[i].VLvM + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"AGrade\">" + obj.Viplist[i].ZLv + "</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num);
+                socket.close();
+
+            }
+        }
+    })
     //VIP用户查询
     $("#search").click(function () {
         var SID = document.getElementById("sid").value;
@@ -93,9 +150,25 @@
                 }
             }
 
-            var obj = toJson(newdate)
 
+            obj = toJson(newdate)
+            if (obj.Viplist == null) {
+                alert("未查询到数据");
+                return
+            }
+
+            //计算本页显示页码
+            var num = GetCookies("VFpage") / 10;
+            $("#num").html(num);
+            //共显示条数
+            $("#total").html(obj.Viplist.length);
+
+            //本页显示条数
+            $("#Page").html(obj.Viplist.length);
+            $("table:eq(0) tr:gt(0)").remove();
             SetCookie("HPlength", obj.Viplist.length);
+
+
             //定义一个空的变量，将需要展示的数据放到里面
             var num = "";
             for (var i = 0; i < obj.Viplist.length; i++) {
@@ -109,15 +182,27 @@
             socket.close();
         }
     })
+    //上一页
+    function Fpages() {
 
+        var VFpage = GetCookies("VFpage");
+        var VFpage2 = GetCookies("VFpage2");
+        var Vmsg_01 = parseInt(VFpage2) - 10;
+        VFpage -= parseInt(10);
+        SetCookie("VFpage", VFpage);
+        SetCookie("VFpage2", Vmsg_01);
+        var Vnextpage =  VFpage - 10;
 
-    $(function () {
-        var socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
         socket.onopen = function () {
             socket.send("1000" + GetCookies("UG"));
             socket.send("9047" + JSON.stringify({
                 BG: "",
-                UG: GetCookies("UG")
+                UG: GetCookies("UG"),
+                ST: parseInt(0),
+                SID: parseInt(0),
+                SN: parseInt(Vnextpage),
+                NUM: parseInt(VFpage),
             }));
             socket.onmessage = function (msg) {
                 var newdate = "";
@@ -126,16 +211,27 @@
                         newdate = newdate + msg.data[i];
                     }
                 }
+                //拿到SetCookies值，除以每页显示的条数，就能计算出页码
+                var num = GetCookies("VFpage") / 10;
+                $("#num").html(num);
+                if (Vnextpage < 0) {
+                    $("#num").html(1);
+                    alert("当前为第一页")
+                    SetCookie("VFpage2", 0);
+                    return
+
+                }
                 obj = toJson(newdate)
-                // alert(obj)
                 if (obj.Viplist == null) {
-                    alert("未查询到任何数据");
+                    alert("未查询到数据")
                     return
                 }
+                //本页显示
+                $("#Page").html(obj.Viplist.length);
 
-                SetCookie("HPlength", obj.Viplist.length);
-                //定义一个空的变量，将需要展示的数据放到里面
-                var num = "";
+                SetCookie("HPlength", obj.Viplist.length)
+
+                var num = ""
                 for (var i = 0; i < obj.Viplist.length; i++) {
                     num += "<ul class=\"table-row\">";
                     num += "<li class=\"table-cell\"  id=\"name\">" + obj.Viplist[i].NickName + "</li>";
@@ -143,12 +239,76 @@
                     num += "<li class=\"table-cell\"  id=\"AGrade\">" + obj.Viplist[i].ZLv + "</li>";
                     num += "</ul>";
                 }
-                $("#table-body").html(num);
-                socket.close();
-
+                $("#table-body").html(num)
+                socket.close()
             }
         }
-    })
+    }
+
+    //下一页
+    function Npages() {
+        var VFpage = GetCookies("VFpage");
+        var VFpage2 = GetCookies("VFpage2");
+        var Vmsg_01 = parseInt(VFpage) + 10;
+        VFpage2 +=  parseInt(10)
+        SetCookie("VFpage2", VFpage2);
+        SetCookie("VFpage", Vmsg_01);
+
+
+        // alert(obj.CT)
+
+        socket = new WebSocket("ws://" + IPconf + ":" + prot + "/ws/join");
+        socket.onopen = function () {
+            socket.send("1000" + GetCookies("UG"));
+            socket.send("9047" + JSON.stringify({
+                BG: "",
+                UG: GetCookies("UG"),
+                ST: parseInt(0),
+                SID: parseInt(0),
+                SN: parseInt(VFpage),
+                NUM: parseInt(Vmsg_01),
+            }));
+            socket.onmessage = function (msg) {
+                var newdate = "";
+                for (var i = 0; i < msg.data.length; i++) {
+                    if (i > 3) {
+                        newdate = newdate + msg.data[i];
+                    }
+                }
+
+                obj = toJson(newdate)
+                if (obj.Viplist == null) {
+                    alert("未查询到数据")
+                    return
+                }
+
+                SetCookie("Vobj_CT", obj.CT)
+                //判断当前页是否为最后一页
+                if(GetCookies("Vobj_CT") < VFpage){
+                    alert("最后一页");
+                    return
+                }
+
+                SetCookie("HPlength", obj.Viplist.length)
+                //本页显示
+                $("#Page").html(obj.Viplist.length);
+                //计算页码
+                var num = GetCookies("VFpage") / 10;
+                $("#num").html(num);
+
+                var num = ""
+                for (var i = 0; i < obj.Viplist.length; i++) {
+                    num += "<ul class=\"table-row\">";
+                    num += "<li class=\"table-cell\"  id=\"name\">" + obj.Viplist[i].NickName + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"VGrade\">" + obj.Viplist[i].VLvM + "</li>";
+                    num += "<li class=\"table-cell\"  id=\"AGrade\">" + obj.Viplist[i].ZLv + "</li>";
+                    num += "</ul>";
+                }
+                $("#table-body").html(num)
+                socket.close()
+            }
+        }
+    }
 </script>
 </body>
 </html>

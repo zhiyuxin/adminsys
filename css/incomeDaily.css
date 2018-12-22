@@ -147,15 +147,15 @@
     background: #000033;
     border: none;
     border-radius: 3px;
-    color: #c96;
-    font-size: 14px;
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
     outline: none;
     position: absolute;
     top: 331px;
     left: 90px;
     z-index: 999;
-
+    letter-spacing: 1px;
 }
 .dailyList>.list>ul>li>p:first-child{
     height: 70px;
@@ -179,5 +179,8 @@
     .dailyList>.list>ul>li {
         width: 20%;
         margin: 15px 25px;
+    }
+    .dailyList input[type=button] {
+        top: 616px;
     }
 }

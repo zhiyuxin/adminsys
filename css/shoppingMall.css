@@ -181,6 +181,7 @@
 @media screen and (min-width: 1200px) and (max-width: 1680px){
     .table-cell {
         padding: 5px 0 5px 0;
+        font-size: 12px;
     }
     .detailed {
         padding: 5px 0 5px 0;

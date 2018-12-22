@@ -524,31 +524,31 @@ table>tbody>tr>td{
     padding-top: 10px;
 }
 /*元宝*/
-.mask>.commMask>.yuanBaoList{
+.mask>.commMask>.goldCoinList{
     padding-top: 50px;
     display: none;
 }
-.mask>.commMask>.yuanBaoList>.yuanBaoLeft{
+.mask>.commMask>.goldCoinList>.goldCoinLeft{
     width: 50%;
     text-align: center;
     overflow: hidden;
     height: 325px;
 }
-.mask>.commMask>.yuanBaoList>.yuanBaoRight{
+.mask>.commMask>.goldCoinList>.goldCoinRight{
     width: 50%;
     text-align: center;
     overflow: hidden;
     height: 325px;
 }
-.mask>.commMask>.yuanBaoList>.yuanBaoLeft,.yuanBaoRight>ul>li{
+.mask>.commMask>.goldCoinList>.goldCoinLeft,.goldCoinRight>ul>li{
     line-height: 30px;
     font-size: 15px;
 }
-.mask>.commMask>.yuanBaoList>.yuanBaoLeft>ul>li>span{
+.mask>.commMask>.goldCoinList>.goldCoinLeft>ul>li>span{
     font-size: 18px;
     font-weight: bold;
 }
-.mask>.commMask>.yuanBaoList>.yuanBaoRight>ul>li>span{
+.mask>.commMask>.goldCoinList>.goldCoinRight>ul>li>span{
     font-size: 18px;
     font-weight: bold;
 }

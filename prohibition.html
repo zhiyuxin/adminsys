@@ -24,7 +24,7 @@
             </div>
             <div class="rightDown">
                 <div class="searchUser">
-                    <input type="text" placeholder="请输入昵称或ID" id="user" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                    <input type="text" placeholder="请输入昵称" id="user" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
                     <input type="button" class="search" value="查询" onclick="Select_Bpuser_NN()">
                 </div>
                 <div class="table">
@@ -107,7 +107,13 @@
                 }
                 obj = toJson(newdate)
                 SetCookie("User",obj.Nickname)
-                $("#content_01").html(obj.Nickname );
+                if(obj.Nickname == ""){
+                    alert("该用户不存在")
+                    return
+                }
+                $("#content_01").html(obj.Nickname);
+
+
 
                 if (obj.Closer=="1234" ||obj.UserClose >0 ){
                     $("#content_02").html("已封禁" );
@@ -122,7 +128,7 @@
                 }
 
                 if (obj.WhClose ==""){
-
+                    $("#content_04").html("<input type='text' id='input_001'>")
                 }else{
                     $("#content_04").html(obj.WhClose);
                 }

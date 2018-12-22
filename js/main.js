@@ -245,6 +245,7 @@ $(function () {
 
 //后台请求玩家排行榜
 function Select_User_infrom_Ranking(num) {
+    SetCookie("NUM",num);
     // alert(123)
     socket = new WebSocket("ws://"+IPconf+":"+prot+"/ws/join");
     socket.onopen = function() {
@@ -255,7 +256,7 @@ function Select_User_infrom_Ranking(num) {
             ST:parseInt(num),
             SID:parseInt(0),
             SN:parseInt(5),
-            NUM:parseInt(16),
+            NUM:parseInt(15),
         }));
         socket.onmessage = function (msg) {
             var newdate="";
@@ -278,7 +279,7 @@ function Select_User_infrom_Ranking(num) {
 
             obj = toJson(newdate)
             if (obj.UMG == null) {
-                alert("未查询到任何数据")
+                alert("未查询到数据")
                 return
             }
             // alert(newdate)
@@ -306,9 +307,6 @@ function Select_User_infrom_Ranking(num) {
                 num += "<li class='table-cell'>"+obj.UMG[i].CallX+"</li>"
                 num += "</ul>"
             }
-
-
-
             $("#table-body").html(num)
             socket.close()
         }
